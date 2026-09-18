@@ -1,5 +1,11 @@
 # Kerberos — Password Manager
 
+# Ensure that the firebase-service.json is in this path:
+C:\Users\Kerberos\api\Kerberos.Api
+
+# Ensure the the google-services.json is in this path:
+C:\Users\Kerberos\android\app
+
 # First time opening the project
 1. Open Android Studio.
 2. File → Open → navigate to the android/ folder inside the extracted zip (not the root Kerberos/ folder — open android/ specifically, since that's the actual Gradle project root). {Kerberos/android} > open the android file
