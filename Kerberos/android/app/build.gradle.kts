@@ -79,11 +79,12 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
-    //sqlCipher for room encryption
-    implementation("net.zetetic:android-database-sqlcipher:4.5.4")
-    implementation(libs.androidx.sqlite.ktx)
+    // SQLCipher for Room encryption
+    implementation(libs.sqlcipher.android)
+    implementation("androidx.sqlite:sqlite:2.4.0")
+    implementation("androidx.sqlite:sqlite-ktx:2.4.0")
 
-    //worker manager = background sync
+    // WorkManager
     implementation("androidx.work:work-runtime-ktx:2.9.0")
 
     //the rest

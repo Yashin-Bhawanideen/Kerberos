@@ -2,10 +2,8 @@ package com.example.kerberos.data.local
 
 import android.content.Context
 import androidx.room.*
-import com.example.kerberos.data.Credential
 import kotlinx.coroutines.flow.Flow
 import net.zetetic.database.sqlcipher.SupportOpenHelperFactory
-
 
 enum class SyncState {SYNCED, PENDING_CREATE, PENDING_DELETE}
 
@@ -56,8 +54,8 @@ abstract class AppDatabase: RoomDatabase(){
 
         fun getDatabase(context: Context, passphrase: ByteArray): AppDatabase {
             return INSTANCE ?: synchronized(this){
-                //making use of cipher sql libs
-                System.loadLibrary("sqlcipher")
+
+                //making use of cipher SQL libs
                 val factory = SupportOpenHelperFactory(passphrase)
 
                 //create an instance of the database

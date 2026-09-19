@@ -15,7 +15,7 @@ okhttp = "4.12.0"
 coroutinesPlayServices = "1.8.1"
 playServicesAuth = "21.2.0"
 room = "2.6.1"
-sqlcipher = "4.5.4"
+sqlcipher = "4.5.0"
 sqliteKtx = "2.4.0"
 ksp = "2.0.21-1.0.28"
 
@@ -47,6 +47,8 @@ androidx-room-runtime = { group = "androidx.room", name = "room-runtime", versio
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 sqlcipher-android = { group = "net.zetetic", name = "android-database-sqlcipher", version.ref = "sqlcipher" }
+
+androidx-sqlite = { group = "androidx.sqlite", name = "sqlite", version.ref = "sqliteKtx" }
 androidx-sqlite-ktx = { group = "androidx.sqlite", name = "sqlite-ktx", version.ref = "sqliteKtx" }
 
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
