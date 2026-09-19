@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+
     id("com.google.gms.google-services")
 }
 
@@ -72,6 +74,19 @@ dependencies {
     // Lets Firebase's Task.await() be used inside coroutines
     implementation(libs.kotlinx.coroutines.play.services)
 
+    // Room database
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+
+    //sqlCipher for room encryption
+    implementation("net.zetetic:android-database-sqlcipher:4.5.4")
+    implementation(libs.androidx.sqlite.ktx)
+
+    //worker manager = background sync
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
+
+    //the rest
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
