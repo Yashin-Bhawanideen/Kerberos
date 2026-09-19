@@ -72,10 +72,14 @@ fun VaultScreen(
     val credentials by vaultViewModel.credentials.collectAsState()
     val isVaultUnlocked by vaultViewModel.isVaultUnlocked.collectAsState()
 
+
     val context = LocalContext.current
     val activity = context as? FragmentActivity
 
     val biometricAuthenticator = BiometricAuthenticator(context)
+
+    //get sync state
+    val lastSyncedText by vaultViewModel.lastSyncedText.collectAsState()
 
     /*
      * When the vault screen opens, ask for biometric authentication.
@@ -96,6 +100,10 @@ fun VaultScreen(
                 )
             }
         }
+    }
+
+    LaunchedEffect(Unit) {
+        vaultViewModel.refreshLastSyncedTime()
     }
 
     if (!isVaultUnlocked) {
@@ -288,7 +296,7 @@ fun VaultScreen(
                 )
 
                 StatCard(
-                    "2m ago",
+                    lastSyncedText,
                     "Last Sync",
                     Modifier.weight(1f)
                 )

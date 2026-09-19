@@ -64,6 +64,10 @@ class SyncWorker (
             }
         }
 
+        //save sync timestamps
+        val prefs = applicationContext.getSharedPreferences("kerberos_prefs", Context.MODE_PRIVATE)
+        prefs.edit().putLong("last_sync_time", System.currentTimeMillis()).apply()
+
         return Result.success()
 
     }

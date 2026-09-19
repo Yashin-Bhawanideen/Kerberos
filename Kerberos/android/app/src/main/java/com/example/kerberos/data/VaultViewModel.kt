@@ -10,6 +10,10 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
+//utility last sync calc
+import android.content.Context
+import android.text.format.DateUtils
+
 class VaultViewModel(app: Application) : AndroidViewModel(app) {
 
     //ini passphrase for room
@@ -31,6 +35,7 @@ class VaultViewModel(app: Application) : AndroidViewModel(app) {
         //try fetch from api
         viewModelScope.launch {
             repo.refreshRemoteCredentials()
+            refreshLastSyncedTime() // get last sync times
         }
     }
 
@@ -64,6 +69,26 @@ class VaultViewModel(app: Application) : AndroidViewModel(app) {
         viewModelScope.launch {
             val result = repo.deleteCredential(id)
             onDone(result.isSuccess)
+        }
+    }
+
+    //utility for time calculations (ill think about giving this its own file tho but not now)
+    private val _lastSyncedText = MutableStateFlow("Never")
+    val lastSyncedText: StateFlow<String> = _lastSyncedText
+
+    fun refreshLastSyncedTime() {
+        val prefs = getApplication<Application>().getSharedPreferences("kerberos_prefs", Context.MODE_PRIVATE)
+        val lastSyncTime = prefs.getLong("last_sync_time", 0L)
+
+        if (lastSyncTime == 0L) {
+            _lastSyncedText.value = "Never"
+        } else {
+            _lastSyncedText.value = DateUtils.getRelativeTimeSpanString(
+                lastSyncTime,
+                System.currentTimeMillis(),
+                DateUtils.MINUTE_IN_MILLIS,
+                DateUtils.FORMAT_ABBREV_RELATIVE
+            ).toString()
         }
     }
 }
