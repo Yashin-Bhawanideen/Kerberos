@@ -9,7 +9,7 @@ object RetrofitClient {
 
     // Emulator talking to a locally-run API: use http://10.0.2.2:5000/
     // Real device / deployed API: use your actual https:// domain
-    private const val BASE_URL = "http://10.0.2.2:5000/"
+    private const val BASE_URL = "http://192.168.10.110/"
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
