@@ -18,5 +18,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--autofill service-->
+        <service
+            android:name=".service.MyAutofillService"
+            android:permission="android.permission.BIND_AUTOFILL_SERVICE"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.service.autofill.AutofillService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.autofill"
+                android:resource="@xml/autofill_service_config" />
+        </service>
+
+
     </application>
 </manifest>
+
+
+<!-- Android Developers. (2026). Build autofill services. [online]
+Available at: https://developer.android.com/identity/autofill/autofill-services [Accessed 20 Sept. 2026]. -->

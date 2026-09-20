@@ -39,7 +39,7 @@ class SyncWorker (
 
                         val response = api.addCredential(request)
                         if (response.isSuccessful) {
-                            dao.updateSyncState(item.id, SyncState.SYNCED)
+                            dao.updateSyncState(item.id, SyncState.SYNCED)// show sync locally
                         } else if (response.code() in 500..599) {
                             return Result.retry()
                         }
@@ -49,7 +49,7 @@ class SyncWorker (
                     SyncState.PENDING_DELETE -> {
                         val response = api.deleteCredential(item.id)
                         if (response.isSuccessful) {
-                            dao.deletePermanently(item.id)
+                            dao.deletePermanently(item.id) //delete from the database
                         } else if (response.code() in 500..599) {
                             return Result.retry()
                         }
