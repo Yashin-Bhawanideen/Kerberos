@@ -19,9 +19,10 @@
             </intent-filter>
         </activity>
 
+
         <!--autofill service-->
         <service
-            android:name=".service.MyAutofillService"
+            android:name=".service.KerberosAutofillService"
             android:permission="android.permission.BIND_AUTOFILL_SERVICE"
             android:exported="true">
 
@@ -34,6 +35,11 @@
                 android:resource="@xml/autofill_service_config" />
         </service>
 
+        <!--auto fill activity -->
+        <activity
+            android:name=".service.AutofillAuthActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
     </application>
 </manifest>
