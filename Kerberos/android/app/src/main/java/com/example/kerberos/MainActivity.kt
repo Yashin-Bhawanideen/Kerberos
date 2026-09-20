@@ -9,7 +9,9 @@ import androidx.compose.ui.Modifier
 import com.example.kerberos.ui.KerberosNavGraph
 import com.example.kerberos.ui.theme.KerberosTheme
 
-class MainActivity : ComponentActivity() {
+import androidx.fragment.app.FragmentActivity
+
+class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

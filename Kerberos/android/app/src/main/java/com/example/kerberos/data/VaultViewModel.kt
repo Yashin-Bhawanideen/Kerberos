@@ -1,20 +1,28 @@
 package com.example.kerberos.data
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class VaultViewModel : ViewModel() {
+//utility last sync calc
+import android.content.Context
+import android.text.format.DateUtils
 
-    private val repo = CredentialRepository()
+class VaultViewModel(app: Application) : AndroidViewModel(app) {
 
-    private val _credentials = MutableStateFlow<List<Credential>>(emptyList())
-    val credentials: StateFlow<List<Credential>> = _credentials
+    //ini passphrase for room
+    private val dummyPass = "KerberosL0c4lke$".toByteArray()
+    private val repo = CredentialRepository(app.applicationContext, dummyPass)
 
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> = _isLoading
+    //bound flow to local room db
+    val credentials: StateFlow<List<Credential>> = repo.credentialFlow
+        .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     private val _isVaultUnlocked = MutableStateFlow(false)
     val isVaultUnlocked: StateFlow<Boolean> = _isVaultUnlocked
@@ -23,26 +31,17 @@ class VaultViewModel : ViewModel() {
 
     fun unlockVault() {
         _isVaultUnlocked.value = true
-        loadCredentials()
+
+        //try fetch from api
+        viewModelScope.launch {
+            repo.refreshRemoteCredentials()
+            refreshLastSyncedTime() // get last sync times
+        }
     }
 
     fun lockVault() {
         _isVaultUnlocked.value = false
         selected = null
-        _credentials.value = emptyList()
-    }
-
-    fun loadCredentials() {
-        viewModelScope.launch {
-            _isLoading.value = true
-
-            repo.getCredentials()
-                .onSuccess {
-                    _credentials.value = it
-                }
-
-            _isLoading.value = false
-        }
     }
 
     fun addCredential(
@@ -61,29 +60,35 @@ class VaultViewModel : ViewModel() {
                 websiteUrl = url,
                 notes = notes
             )
-
             val result = repo.addCredential(cred)
-
-            if (result.isSuccess) {
-                loadCredentials()
-            }
-
             onDone(result.isSuccess)
         }
     }
 
-    fun deleteCredential(
-        id: String,
-        onDone: (Boolean) -> Unit
-    ) {
+    fun deleteCredential (id: String, onDone: (Boolean) -> Unit) {
         viewModelScope.launch {
             val result = repo.deleteCredential(id)
-
-            if (result.isSuccess) {
-                loadCredentials()
-            }
-
             onDone(result.isSuccess)
+        }
+    }
+
+    //utility for time calculations (ill think about giving this its own file tho but not now)
+    private val _lastSyncedText = MutableStateFlow("Never")
+    val lastSyncedText: StateFlow<String> = _lastSyncedText
+
+    fun refreshLastSyncedTime() {
+        val prefs = getApplication<Application>().getSharedPreferences("kerberos_prefs", Context.MODE_PRIVATE)
+        val lastSyncTime = prefs.getLong("last_sync_time", 0L)
+
+        if (lastSyncTime == 0L) {
+            _lastSyncedText.value = "Never"
+        } else {
+            _lastSyncedText.value = DateUtils.getRelativeTimeSpanString(
+                lastSyncTime,
+                System.currentTimeMillis(),
+                DateUtils.MINUTE_IN_MILLIS,
+                DateUtils.FORMAT_ABBREV_RELATIVE
+            ).toString()
         }
     }
 }
