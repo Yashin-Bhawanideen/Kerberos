@@ -151,8 +151,41 @@ class KerberosAutofillService: AutofillService(){
         }
     }
 
-    override fun onSaveRequest(p0: SaveRequest, p1: SaveCallback) {
-        TODO("Not yet implemented")
+    override fun onSaveRequest(request: SaveRequest, callback: SaveCallback) {
+        val fillContexts = request.fillContexts
+        val latestStructure = fillContexts.last().structure
+
+        val parsedFields = ParsedFields()
+        parseNode(latestStructure.getWindowNodeAt(0).rootViewNode, parsedFields)
+
+        val username = parsedFields.extractedUsername
+        val password = parsedFields.extractedPassword
+
+        if (!username.isNullOrBlank() && !password.isNullOrBlank()) {
+            serviceScope.launch {
+                val dummyPass = "KerberosL0c4lke$".toByteArray()
+                val dao = AppDatabase.getDatabase(applicationContext, dummyPass).credentialDao()
+
+                val serviceName = parsedFields.webDomain.ifBlank { "Autofilled Service" }
+                val newEntity = CredentialEntity(
+                    id = UUID.randomUUID().toString(),
+                    serviceName = serviceName,
+                    username = username,
+                    password = password,
+                    websiteUrl = parsedFields.webDomain,
+                    notes = "Saved via Kerberos Autofill",
+                    createdAt = System.currentTimeMillis(),
+                    modifiedAt = System.currentTimeMillis(),
+                    syncState = SyncState.PENDING_CREATE
+                )
+
+                dao.insertOrUpdate(newEntity)
+                callback.onSuccess()
+
+            }
+        } else {
+            callback.onSuccess()
+        }
     }
 
     private fun parseNode(node: AssistStructure.ViewNode, parsedFields: ParsedFields){
