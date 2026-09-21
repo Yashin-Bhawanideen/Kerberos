@@ -45,6 +45,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -140,7 +141,7 @@ fun VaultScreen(
             ) {
                 Icon(
                     Icons.Filled.Add,
-                    contentDescription = "Add",
+                    contentDescription = stringResource(R.string.add),
                     tint = Color.White
                 )
             }
@@ -191,7 +192,7 @@ fun VaultScreen(
 
                         Icon(
                             Icons.Filled.Notifications,
-                            contentDescription = "Notifications",
+                            contentDescription = stringResource(R.string.notifications),
                             tint = Color.White
                         )
 
@@ -217,7 +218,7 @@ fun VaultScreen(
 
                     Icon(
                         Icons.Filled.Settings,
-                        contentDescription = "Settings",
+                        contentDescription = stringResource(R.string.settings),
                         tint = Color.White,
                         modifier = Modifier.clickable {
                             onOpenSettings()
@@ -228,7 +229,7 @@ fun VaultScreen(
 
                     Icon(
                         Icons.Filled.Logout,
-                        contentDescription = "Sign out",
+                        contentDescription = stringResource(R.string.sign_out),
                         tint = Color.White,
                         modifier = Modifier.clickable {
                             onSignOut()
@@ -239,7 +240,7 @@ fun VaultScreen(
                 Spacer(Modifier.height(16.dp))
 
                 Text(
-                    "Good morning,",
+                    stringResource(R.string.good_morning),
                     color = KerberosLightBlueText,
                     fontSize = 13.sp
                 )
@@ -258,7 +259,7 @@ fun VaultScreen(
                     onValueChange = {},
                     placeholder = {
                         Text(
-                            "Search credentials...",
+                            stringResource(R.string.search_credentials),
                             color = KerberosLightBlueText
                         )
                     },
@@ -290,19 +291,19 @@ fun VaultScreen(
             ) {
                 StatCard(
                     "${credentials.size}",
-                    "Credentials",
+                    stringResource(R.string.credentials),
                     Modifier.weight(1f)
                 )
 
                 StatCard(
                     "100%",
-                    "Secured",
+                    stringResource(R.string.secured),
                     Modifier.weight(1f)
                 )
 
                 StatCard(
                     lastSyncedText,
-                    "Last Sync",
+                    stringResource(R.string.last_sync),
                     Modifier.weight(1f)
                 )
             }
@@ -314,13 +315,13 @@ fun VaultScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    "Your Credentials",
+                    stringResource(R.string.your_credentials),
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp
                 )
 
                 Text(
-                    "Sort ›",
+                    stringResource(R.string.sort),
                     color = KerberosBlue,
                     fontSize = 13.sp
                 )
@@ -359,7 +360,7 @@ fun BiometricLockScreen(
 
         Icon(
             imageVector = Icons.Filled.Fingerprint,
-            contentDescription = "Biometric authentication",
+            contentDescription = stringResource(R.string.biometric_authentication),
             modifier = Modifier.size(96.dp),
             tint = KerberosBlue
         )
@@ -367,7 +368,7 @@ fun BiometricLockScreen(
         Spacer(Modifier.height(24.dp))
 
         Text(
-            "Vault Locked",
+            stringResource(R.string.vault_locked),
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold
         )
@@ -375,7 +376,7 @@ fun BiometricLockScreen(
         Spacer(Modifier.height(8.dp))
 
         Text(
-            "Authenticate to access your Kerberos vault.",
+            stringResource(R.string.authenticate_vault),
             color = KerberosGrayText,
             fontSize = 14.sp
         )
@@ -392,7 +393,7 @@ fun BiometricLockScreen(
 
             Spacer(Modifier.width(8.dp))
 
-            Text("Unlock Vault")
+            Text(stringResource(R.string.unlock_vault))
         }
 
         Spacer(Modifier.height(12.dp))
@@ -407,7 +408,7 @@ fun BiometricLockScreen(
 
             Spacer(Modifier.width(8.dp))
 
-            Text("Sign Out")
+            Text(stringResource(R.string.sign_out))
         }
     }
 }

@@ -10,4 +10,47 @@
     <string name="english">Engels</string>
     <string name="afrikaans">Afrikaans</string>
     <string name="sign_out">Teken uit</string>
+
+    <string name="kerberos_logo">Kerberos-logo</string>
+    <string name="passwords_secured">Jou wagwoorde, veilig deur ontwerp</string>
+    <string name="zero_knowledge">Nulkennis</string>
+    <string name="two_fa_ready">2FA-gereed</string>
+    <string name="open_source">Oopbron</string>
+    <string name="welcome_back">Welkom terug</string>
+    <string name="sign_in_secure_vault">Meld aan om toegang tot jou veilige kluis te kry</string>
+    <string name="continue_with_google">Gaan voort met Google</string>
+    <string name="simulate_sign_in_error">Simuleer aanmeldfout →</string>
+    <string name="google_sign_in_failed">Google-aanmelding het misluk: %1$s</string>
+    <string name="or">OF</string>
+    <string name="sign_in_master_password">Meld aan met hoofwagwoord</string>
+
+    <string name="add">Voeg by</string>
+    <string name="notifications">Kennisgewings</string>
+    <string name="good_morning">Goeiemôre,</string>
+    <string name="search_credentials">Soek aanmeldbesonderhede...</string>
+    <string name="credentials">Aanmeldbesonderhede</string>
+    <string name="secured">Beveilig</string>
+    <string name="last_sync">Laaste sinkronisering</string>
+    <string name="your_credentials">Jou aanmeldbesonderhede</string>
+    <string name="sort">Sorteer ›</string>
+
+    <string name="vault_locked">Kluis gesluit</string>
+    <string name="authenticate_vault">Verifieer om toegang tot jou Kerberos-kluis te kry.</string>
+    <string name="unlock_vault">Ontsluit kluis</string>
+
+    <string name="add_credential">Voeg aanmeldbesonderhede by</string>
+    <string name="save">Stoor</string>
+    <string name="service_name">DIENSNAAM</string>
+    <string name="service_name_example">bv. Google, GitHub...</string>
+    <string name="username_email">GEBRUIKERSNAAM / E-POS</string>
+    <string name="email_example">jou@epos.com</string>
+    <string name="password">WAGWOORD</string>
+    <string name="password_placeholder">Voer ’n wagwoord in of genereer een</string>
+    <string name="hide_password">Versteek wagwoord</string>
+    <string name="show_password">Wys wagwoord</string>
+    <string name="generate_strong_password">⚡ Genereer sterk wagwoord</string>
+    <string name="website_url">WEBWERF-URL</string>
+    <string name="website_example">https://voorbeeld.com</string>
+    <string name="notes">NOTAS</string>
+    <string name="notes_placeholder">Opsionele notas oor hierdie aanmeldbesonderhede...</string>
 </resources>

@@ -36,6 +36,8 @@ import com.example.kerberos.data.VaultViewModel
 import com.example.kerberos.ui.theme.KerberosBlue
 import com.example.kerberos.ui.theme.KerberosGrayText
 import kotlin.random.Random
+import androidx.compose.ui.res.stringResource
+import com.example.kerberos.R
 
 @Composable
 fun AddCredentialScreen(
