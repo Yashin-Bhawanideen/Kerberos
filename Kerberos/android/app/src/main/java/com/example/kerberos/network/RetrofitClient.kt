@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    // Emulator talking to a locally-run API: use http://10.0.2.2:5000/ http://192.168.10.110:5000/
+    // Emulator talking to a locally-run API: use http://10.0.2.2:5000/ or http://192.168.10.110:5000/
     // Real device / deployed API: use your actual https:// domain
     private const val BASE_URL = "http://10.0.2.2:5000/"
 
