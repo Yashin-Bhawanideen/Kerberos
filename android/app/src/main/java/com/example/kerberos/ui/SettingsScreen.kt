@@ -25,6 +25,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import com.example.kerberos.settings.SettingsManager
+import androidx.compose.ui.res.stringResource
+import com.example.kerberos.R
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
+
 
 @Composable
 fun SettingsScreen(
@@ -50,7 +55,7 @@ fun SettingsScreen(
         verticalArrangement = Arrangement.Top
     ) {
         Text(
-            text = "Settings",
+            text = stringResource(R.string.settings),
             style = MaterialTheme.typography.headlineMedium
         )
 
@@ -65,12 +70,12 @@ fun SettingsScreen(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = "Biometric authentication",
+                    text = stringResource(R.string.biometric_authentication),
                     style = MaterialTheme.typography.titleMedium
                 )
 
                 Text(
-                    text = "Use fingerprint or face authentication to unlock the vault."
+                    text = stringResource(R.string.biometric_description)
                 )
             }
 
@@ -98,12 +103,12 @@ fun SettingsScreen(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = "Security notifications",
+                    text = stringResource(R.string.security_notifications),
                     style = MaterialTheme.typography.titleMedium
                 )
 
                 Text(
-                    text = "Receive alerts about security events."
+                    text = stringResource(R.string.security_notifications_description)
                 )
             }
 
@@ -123,25 +128,37 @@ fun SettingsScreen(
         Spacer(modifier = Modifier.height(20.dp))
 
         Text(
-            text = "Language",
+            text = stringResource(R.string.language),
             style = MaterialTheme.typography.titleMedium
         )
 
         LanguageOption(
             language = "English",
+            displayName = stringResource(R.string.english),
             selectedLanguage = selectedLanguage,
             onSelected = {
                 selectedLanguage = it
                 settingsManager.setLanguage(it)
+
+                //changes app language to English (Android Developers, 2026)
+                AppCompatDelegate.setApplicationLocales(
+                    LocaleListCompat.forLanguageTags("en")
+                )
             }
         )
 
         LanguageOption(
             language = "Afrikaans",
+            displayName = stringResource(R.string.afrikaans),
             selectedLanguage = selectedLanguage,
             onSelected = {
                 selectedLanguage = it
                 settingsManager.setLanguage(it)
+
+                //changes app language to Afrikaans (Android Developers, 2026)
+                AppCompatDelegate.setApplicationLocales(
+                    LocaleListCompat.forLanguageTags("af")
+                )
             }
         )
 
@@ -151,7 +168,7 @@ fun SettingsScreen(
             onClick = onSignOut,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Sign out")
+            Text(stringResource(R.string.sign_out))
         }
     }
 }
@@ -159,6 +176,7 @@ fun SettingsScreen(
 @Composable
 private fun LanguageOption(
     language: String,
+    displayName: String,
     selectedLanguage: String,
     onSelected: (String) -> Unit
 ) {
@@ -179,8 +197,16 @@ private fun LanguageOption(
         )
 
         Text(
-            text = language,
+            text = displayName,
             modifier = Modifier.padding(start = 8.dp)
         )
     }
 }
+
+/*
+REFERENCE LIST
+
+Android Developers. 2026. Per-app language preferences. [Online].
+Available at: https://developer.android.com/guide/topics/resources/app-languages
+[Accessed 21 September 2026].
+*/

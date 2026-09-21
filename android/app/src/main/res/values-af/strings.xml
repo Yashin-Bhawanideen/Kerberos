@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Kerberos</string>
+
+    <string name="settings">Instellings</string>
+    <string name="biometric_authentication">Biometriese verifikasie</string>
+    <string name="biometric_description">Gebruik vingerafdruk of gesigsverifikasie om die kluis te ontsluit.</string>
+    <string name="security_notifications">Sekuriteitskennisgewings</string>
+    <string name="security_notifications_description">Ontvang waarskuwings oor sekuriteitsgebeure.</string>
+    <string name="language">Taal</string>
+    <string name="english">Engels</string>
+    <string name="afrikaans">Afrikaans</string>
+    <string name="sign_out">Teken uit</string>
+</resources>

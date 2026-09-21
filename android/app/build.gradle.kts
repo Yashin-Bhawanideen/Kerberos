@@ -50,6 +50,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.navigation.compose)
+    //app language support (Android Developers, 2026)
+    implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("androidx.biometric:biometric:1.2.0-alpha05")
 
     implementation(platform(libs.androidx.compose.bom))
@@ -95,4 +97,13 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
 }
+
+/*
+REFERENCE LIST
+
+Android Developers. 2026. Per-app language preferences. [Online].
+Available at: https://developer.android.com/guide/topics/resources/app-languages
+[Accessed 21 September 2026].
+*/

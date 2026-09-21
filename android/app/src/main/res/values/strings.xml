@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Kerberos</string>
+
+
+    <string name="settings">Settings</string>
+    <string name="biometric_authentication">Biometric authentication</string>
+    <string name="biometric_description">Use fingerprint or face authentication to unlock the vault</string>
+    <string name="security_notifications">Security notification</string>
+    <string name="security_notifications_description">Receive alerts about security events</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="afrikaans">Afrikaans</string>
+    <string name="sign_out">Sign out</string>
 </resources>
+
