@@ -1,12 +1,20 @@
 # Kerberos — Password Manager
 
+# Memebers involved
+•	ST10444715 Keegan Ewan Tromp
+•	ST10434249 Richard Hein
+•	ST10443463 Yashin Bhawanideen
+•	ST10443090 Amir Muller
+•	ST10450208 Mishal Bhikha
+
+
 # This GitHub that was used for version control & proper GitHub workflows that work + Contributors
 The link provided is public for viewing: 
 https://github.com/Yashin-Bhawanideen/Kerberos.git
 
 <img width="1500" height="800" alt="image" src="https://github.com/user-attachments/assets/464d4dad-c6e1-42f4-8609-ddbe46106acb" />
 
-Tests that succeeded
+# Tests that succeeded
 
 <img width="1300" height="800" alt="image" src="https://github.com/user-attachments/assets/d6af15d4-4141-45a3-8e14-95b5a51ccbc9" />
 
@@ -18,11 +26,29 @@ REST API Creation, Operation, and Deployment [ADD API VIDEO LINK] Should cover t
 Kerberos Android Application [ADD APPLICATION VIDEO LINK] Should cover the completed app and its core functionality — Google Single Sign-On, settings, credential management, REST API integration, cloud data, and the user-defined features.
 
 # Screenshots and Technical Evidence
-Google Sign-in
+# Google Sign-in
 
+<img width="738" height="1599" alt="image" src="https://github.com/user-attachments/assets/7872c6e0-84e9-461f-a679-d05b82609add" />
 
+# Biometric System
 
-Add Credential screen
+<img width="738" height="1599" alt="image" src="https://github.com/user-attachments/assets/35feb522-4d24-43fe-bfd2-e98ee5c81fc6" />
+
+# Home/Main page
+
+<img width="738" height="1599" alt="image" src="https://github.com/user-attachments/assets/6c8b502d-cf61-4a85-8eab-df85b2b1e196" />
+
+# Add Credential CRUD
+
+<img width="738" height="1599" alt="image" src="https://github.com/user-attachments/assets/29f0d9aa-fe54-494f-b9bd-b34d612cf411" />
+
+# Firebase Firestore Database storing user credentials
+
+<img width="1662" height="632" alt="image" src="https://github.com/user-attachments/assets/2b8a3abc-9e79-4553-bb16-2df74d7fd091" />
+
+# Azure API Hosted
+
+<img width="1901" height="652" alt="image" src="https://github.com/user-attachments/assets/52ab260b-2357-43c4-bebe-56784e04e753" />
 
 
 # Overview
