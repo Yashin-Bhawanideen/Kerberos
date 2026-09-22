@@ -41,36 +41,78 @@ public class CredentialService
     }
 
     public async Task<CredentialDto> CreateAsync(string uid, CreateCredentialRequest request)
+{
+    var now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+
+    //uses the same id as the local Room credential
+    var docRef = CredentialsCollection(uid).Document(request.Id);
+
+    var data = new Dictionary<string, object>
     {
-        var now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-        var docRef = CredentialsCollection(uid).Document();
+        { "serviceName", request.ServiceName },
+        { "username", request.Username },
+        { "password", Encrypt(request.Password) },
+        { "websiteUrl", request.WebsiteUrl },
+        { "notes", request.Notes },
+        { "createdAt", now },
+        { "modifiedAt", now }
+    };
 
-        var data = new Dictionary<string, object>
-        {
-            { "serviceName", request.ServiceName },
-            { "username", request.Username },
-            { "password", Encrypt(request.Password) },
-            { "websiteUrl", request.WebsiteUrl },
-            { "notes", request.Notes },
-            { "createdAt", now },
-            { "modifiedAt", now }
-        };
+    await docRef.SetAsync(data);
 
-        await docRef.SetAsync(data);
+    return new CredentialDto
+    {
+        Id = request.Id,
+        ServiceName = request.ServiceName,
+        Username = request.Username,
+        Password = request.Password,
+        WebsiteUrl = request.WebsiteUrl,
+        Notes = request.Notes,
+        CreatedAt = now,
+        ModifiedAt = now
+    };
+}
 
-        // Build the DTO directly from the request rather than re-fetching from Firestore
-        return new CredentialDto
-        {
-            Id = docRef.Id,
-            ServiceName = request.ServiceName,
-            Username = request.Username,
-            Password = request.Password,
-            WebsiteUrl = request.WebsiteUrl,
-            Notes = request.Notes,
-            CreatedAt = now,
-            ModifiedAt = now
-        };
+//updates the existing Firestore document (Google Cloud, 2026)
+public async Task<CredentialDto?> UpdateAsync(
+    string uid,
+    string id,
+    UpdateCredentialRequest request)
+{
+    var docRef = CredentialsCollection(uid).Document(id);
+    var existing = await docRef.GetSnapshotAsync();
+
+    if (!existing.Exists)
+    {
+        return null;
     }
+
+    var now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+
+    var data = new Dictionary<string, object>
+    {
+        { "serviceName", request.ServiceName },
+        { "username", request.Username },
+        { "password", Encrypt(request.Password) },
+        { "websiteUrl", request.WebsiteUrl },
+        { "notes", request.Notes },
+        { "modifiedAt", now }
+    };
+
+    await docRef.UpdateAsync(data);
+
+    return new CredentialDto
+    {
+        Id = id,
+        ServiceName = request.ServiceName,
+        Username = request.Username,
+        Password = request.Password,
+        WebsiteUrl = request.WebsiteUrl,
+        Notes = request.Notes,
+        CreatedAt = existing.GetValue<long>("createdAt"),
+        ModifiedAt = now
+    };
+}
 
     public async Task DeleteAsync(string uid, string id)
     {
@@ -129,3 +171,11 @@ public class CredentialService
         return Encoding.UTF8.GetString(plainBytes);
     }
 }
+
+/*
+REFERENCE LIST
+
+Google Cloud. 2026. Add data to Cloud Firestore. [Online].
+Available at: https://cloud.google.com/firestore/docs/manage-data/add-data
+[Accessed 22 September 2026].
+*/

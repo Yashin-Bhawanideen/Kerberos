@@ -12,6 +12,15 @@ data class CredentialDto(
 )
 
 data class CreateCredentialRequest(
+    val id: String,
+    val serviceName: String,
+    val username: String,
+    val password: String,
+    val websiteUrl: String,
+    val notes: String
+)
+
+data class UpdateCredentialRequest(
     val serviceName: String,
     val username: String,
     val password: String,

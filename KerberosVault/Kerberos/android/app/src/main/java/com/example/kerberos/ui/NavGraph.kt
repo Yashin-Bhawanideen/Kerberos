@@ -73,15 +73,33 @@ fun KerberosNavGraph() {
         }
 
         composable("detail") {
-            // Guards against reaching this screen with nothing selected
-            // (e.g. after a process restart that lost the in-memory selection)
             vaultViewModel.selected?.let { cred ->
                 CredentialDetailScreen(
-                    cred,
-                    vaultViewModel
-                ) {
-                    navController.popBackStack()
-                }
+                    credential = cred,
+                    vaultViewModel = vaultViewModel,
+                    onBack = {
+                        navController.popBackStack()
+                    },
+                    onEdit = {
+                        navController.navigate("edit")
+                    }
+                )
+            }
+        }
+
+        //adds the edit screen to the navigation graph (Android Developers, 2026)
+        composable("edit") {
+            vaultViewModel.selected?.let { cred ->
+                EditCredentialScreen(
+                    credential = cred,
+                    vaultViewModel = vaultViewModel,
+                    onBack = {
+                        navController.popBackStack()
+                    },
+                    onSaved = {
+                        navController.popBackStack()
+                    }
+                )
             }
         }
 
@@ -116,3 +134,6 @@ fun KerberosNavGraph() {
 //Available at: https://www.geeksforgeeks.org/android/responsive-ui-design-in-android/
 //Pathak, A., 2026. What is System UI. [Online]
 //Available at: https://www.browserstack.com/guide/what-is-system-ui
+//Android Developers, 2026. Navigation with Compose. [Online]
+//Available at: https://developer.android.com/develop/ui/compose/navigation
+//[Accessed 22 September 2026].

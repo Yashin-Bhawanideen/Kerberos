@@ -50,7 +50,8 @@ import com.example.kerberos.ui.theme.KerberosGrayText
 fun CredentialDetailScreen(
     credential: Credential,
     vaultViewModel: VaultViewModel,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    onEdit: () -> Unit
 ) {
     var passwordVisible by remember { mutableStateOf(false) }
     var showDeleteConfirm by remember { mutableStateOf(false) }
@@ -63,7 +64,7 @@ fun CredentialDetailScreen(
         ) {
             TextButton(onClick = onBack) { Text(stringResource(R.string.credential_details_back)) }
             Spacer(Modifier.weight(1f))
-            TextButton(onClick = { /* navigate to edit - not yet implemented */ }) {
+            TextButton(onClick = onEdit) {
                 Text(stringResource(R.string.edit), color = KerberosBlue)
             }
         }

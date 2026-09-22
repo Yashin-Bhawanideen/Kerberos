@@ -72,6 +72,32 @@ class CredentialRepository (context: Context, passphrase: ByteArray){
         return Result.success(Unit)
     }
 
+    suspend fun updateCredential(credential: Credential): Result<Unit> {
+        return try {
+            val entity = CredentialEntity(
+                id = credential.id,
+                serviceName = credential.serviceName,
+                username = credential.username,
+                password = credential.password,
+                websiteUrl = credential.websiteUrl,
+                notes = credential.notes,
+                createdAt = credential.createdAt,
+                modifiedAt = System.currentTimeMillis(),
+                syncState = SyncState.PENDING_UPDATE
+            )
+
+            //update local credential first
+            dao.insertOrUpdate(entity)
+
+            //sync change when online
+            scheduleSync()
+
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
     suspend fun deleteCredential(id: String): Result<Unit>{
         //mark as local pending delete so that the ui does not show deleted records
         dao.updateSyncState(id, SyncState.PENDING_DELETE)

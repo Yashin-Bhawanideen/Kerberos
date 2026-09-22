@@ -9,6 +9,7 @@ import com.example.kerberos.network.CreateCredentialRequest
 import com.example.kerberos.network.RetrofitClient
 import org.jetbrains.annotations.Async
 import com.example.kerberos.notifications.KerberosNotificationManager
+import com.example.kerberos.network.UpdateCredentialRequest
 
 // Background worker (WorkManager) that pushes locally pending credential
 // changes (creates/deletes) to the backend and reconciles local sync state
@@ -36,6 +37,7 @@ class SyncWorker (
                     // Push a locally-created credential to the backend
                     SyncState.PENDING_CREATE -> {
                         val request = CreateCredentialRequest(
+                            id = item.id,
                             serviceName = item.serviceName,
                             username = item.username,
                             password = item.password,
@@ -46,6 +48,29 @@ class SyncWorker (
                         val response = api.addCredential(request)
                         if (response.isSuccessful) {
                             dao.updateSyncState(item.id, SyncState.SYNCED)// show sync locally
+                        } else if (response.code() in 500..599) {
+                            KerberosNotificationManager(
+                                applicationContext
+                            ).showSyncFailure()
+
+                            return Result.retry()
+                        }
+                    }
+
+                    //sends locally edited credentials when connection is available (Android, 2026)
+                    SyncState.PENDING_UPDATE -> {
+                        val request = UpdateCredentialRequest(
+                            serviceName = item.serviceName,
+                            username = item.username,
+                            password = item.password,
+                            websiteUrl = item.websiteUrl,
+                            notes = item.notes
+                        )
+
+                        val response = api.updateCredential(item.id, request)
+
+                        if (response.isSuccessful) {
+                            dao.updateSyncState(item.id, SyncState.SYNCED)
                         } else if (response.code() in 500..599) {
                             KerberosNotificationManager(
                                 applicationContext

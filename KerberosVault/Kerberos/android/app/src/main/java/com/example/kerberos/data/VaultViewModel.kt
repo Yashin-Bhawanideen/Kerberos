@@ -70,6 +70,21 @@ class VaultViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
+    fun updateCredential(
+        credential: Credential,
+        onDone: (Boolean) -> Unit
+    ) {
+        viewModelScope.launch {
+            val result = repo.updateCredential(credential)
+
+            if (result.isSuccess) {
+                selected = credential
+            }
+
+            onDone(result.isSuccess)
+        }
+    }
+
     fun deleteCredential (id: String, onDone: (Boolean) -> Unit) {
         viewModelScope.launch {
             val result = repo.deleteCredential(id)

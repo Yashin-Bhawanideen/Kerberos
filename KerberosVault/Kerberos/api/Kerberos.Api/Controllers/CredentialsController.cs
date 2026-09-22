@@ -50,6 +50,26 @@ public class CredentialsController : ControllerBase
         var created = await _service.CreateAsync(Uid, request);
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
+
+// PUT /api/credentials/{id}
+//updates an existing credential through the API (Microsoft, 2026)
+[HttpPut("{id}")]
+public async Task<ActionResult<CredentialDto>> Update(
+    string id,
+    UpdateCredentialRequest request)
+{
+    if (string.IsNullOrWhiteSpace(request.ServiceName) ||
+        string.IsNullOrWhiteSpace(request.Username) ||
+        string.IsNullOrWhiteSpace(request.Password))
+    {
+        return BadRequest("serviceName, username, and password are required.");
+    }
+
+    var updated = await _service.UpdateAsync(Uid, id, request);
+
+    return updated is null ? NotFound() : Ok(updated);
+}
+
     // DELETE /api/credentials/{id}
     // Deletes a credential by id, scoped to the authenticated user
     [HttpDelete("{id}")]

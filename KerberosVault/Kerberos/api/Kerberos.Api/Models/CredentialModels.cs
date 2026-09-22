@@ -16,6 +16,17 @@ public class CredentialDto
 // Payload used when creating a new credential
 public class CreateCredentialRequest
 {
+    public string Id { get; set; } = "";
+    public string ServiceName { get; set; } = "";
+    public string Username { get; set; } = "";
+    public string Password { get; set; } = "";
+    public string WebsiteUrl { get; set; } = "";
+    public string Notes { get; set; } = "";
+}
+
+// Payload used when updating an existing credential
+public class UpdateCredentialRequest
+{
     public string ServiceName { get; set; } = "";
     public string Username { get; set; } = "";
     public string Password { get; set; } = "";

@@ -7,8 +7,13 @@ import net.zetetic.database.sqlcipher.SupportOpenHelperFactory
 
 // Tracks whether a local credential is in sync with the remote backend,
 // or is waiting to be pushed as a create or a delete
-enum class SyncState {SYNCED, PENDING_CREATE, PENDING_DELETE}
-
+// Tracks whether a credential is synced or still needs to be sent to the API
+enum class SyncState {
+    SYNCED,
+    PENDING_CREATE,
+    PENDING_UPDATE,
+    PENDING_DELETE
+}
 // Room entity representing a single saved credential, stored locally
 // in the SQLCipher-encrypted database
 @Entity(tableName = "credentials")
