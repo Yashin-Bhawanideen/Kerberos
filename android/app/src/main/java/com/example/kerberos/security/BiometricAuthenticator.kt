@@ -5,6 +5,7 @@ import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
+import com.example.kerberos.R
 
 class BiometricAuthenticator(
     private val context: Context
@@ -52,9 +53,9 @@ class BiometricAuthenticator(
         )
 
         val promptInfo = BiometricPrompt.PromptInfo.Builder()
-            .setTitle("Unlock Kerberos")
-            .setSubtitle("Authenticate to access your vault")
-            .setNegativeButtonText("Cancel")
+            .setTitle(context.getString(R.string.unlock_kerberos))
+            .setSubtitle(context.getString(R.string.authenticate_access_vault))
+            .setNegativeButtonText(context.getString(R.string.cancel))
             .build()
 
         biometricPrompt.authenticate(promptInfo)

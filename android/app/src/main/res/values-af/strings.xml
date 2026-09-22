@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">Kerberos</string>
+
+    <string name="settings">Instellings</string>
+    <string name="biometric_authentication">Biometriese verifikasie</string>
+    <string name="biometric_description">Gebruik vingerafdruk of gesigsverifikasie om die kluis te ontsluit.</string>
+    <string name="security_notifications">Sekuriteitskennisgewings</string>
+    <string name="security_notifications_description">Ontvang waarskuwings oor sekuriteitsgebeure.</string>
+    <string name="language">Taal</string>
+    <string name="english">Engels</string>
+    <string name="afrikaans">Afrikaans</string>
+    <string name="sign_out">Teken uit</string>
+
+    <string name="kerberos_logo">Kerberos-logo</string>
+    <string name="passwords_secured">Jou wagwoorde, veilig deur ontwerp</string>
+    <string name="zero_knowledge">Nulkennis</string>
+    <string name="two_fa_ready">2FA-gereed</string>
+    <string name="open_source">Oopbron</string>
+    <string name="welcome_back">Welkom terug</string>
+    <string name="sign_in_secure_vault">Meld aan om toegang tot jou veilige kluis te kry</string>
+    <string name="continue_with_google">Gaan voort met Google</string>
+    <string name="simulate_sign_in_error">Simuleer aanmeldfout</string>
+    <string name="google_sign_in_failed">Google-aanmelding het misluk: %1$s</string>
+    <string name="or">OF</string>
+    <string name="sign_in_master_password">Meld aan met hoofwagwoord</string>
+
+    <string name="add">Voeg by</string>
+    <string name="notifications">Kennisgewings</string>
+    <string name="good_morning">Goeiemôre,</string>
+    <string name="search_credentials">Soek aanmeldbesonderhede...</string>
+    <string name="credentials">Aanmeldbesonderhede</string>
+    <string name="secured">Beveilig</string>
+    <string name="last_sync">Laaste sinkronisering</string>
+    <string name="your_credentials">Jou aanmeldbesonderhede</string>
+    <string name="sort">Sorteer</string>
+
+    <string name="vault_locked">Kluis gesluit</string>
+    <string name="authenticate_vault">Verifieer om toegang tot jou Kerberos-kluis te kry.</string>
+    <string name="unlock_vault">Ontsluit kluis</string>
+
+    <string name="add_credential">Voeg aanmeldbesonderhede by</string>
+    <string name="save">Stoor</string>
+    <string name="service_name">DIENSNAAM</string>
+    <string name="service_name_example">bv. Google, GitHub...</string>
+    <string name="username_email">GEBRUIKERSNAAM / E-POS</string>
+    <string name="email_example">jou@epos.com</string>
+    <string name="password">WAGWOORD</string>
+    <string name="password_placeholder">Voer ’n wagwoord in of genereer een</string>
+    <string name="hide_password">Versteek wagwoord</string>
+    <string name="show_password">Wys wagwoord</string>
+    <string name="generate_strong_password">Genereer sterk wagwoord</string>
+    <string name="website_url">WEBWERF-URL</string>
+    <string name="website_example">https://voorbeeld.com</string>
+    <string name="notes">NOTAS</string>
+    <string name="notes_placeholder">Opsionele notas oor hierdie aanmeldbesonderhede...</string>
+
+    <string name="credential_details">Aanmeldbesonderhede</string>
+    <string name="edit">Wysig</string>
+    <string name="modified_recently">Onlangs gewysig</string>
+    <string name="username">GEBRUIKERSNAAM</string>
+    <string name="website">WEBWERF</string>
+    <string name="copy_username">Kopieer gebruikersnaam</string>
+    <string name="copy_password">Kopieer wagwoord</string>
+    <string name="copy_website">Kopieer webwerf</string>
+    <string name="delete_credential">Verwyder aanmeldbesonderhede</string>
+    <string name="delete_credential_question">Verwyder aanmeldbesonderhede?</string>
+    <string name="delete_warning">Dit kan nie ongedaan gemaak word nie.</string>
+    <string name="delete">Verwyder</string>
+    <string name="cancel">Kanselleer</string>
+
+    <string name="security_alerts">Sekuriteitswaarskuwings</string>
+    <string name="security_channel_description">Sekuriteits- en rekeningaktiwiteitwaarskuwings</string>
+    <string name="security_alert">Sekuriteitswaarskuwing</string>
+    <string name="new_device_login">Nuwe toestel het by jou Kerberos-rekening aangemeld.</string>
+    <string name="sync_failed">Sinkronisering het misluk</string>
+    <string name="sync_failure_message">Kerberos kon nie jou nuutste veranderinge sinkroniseer nie.</string>
+
+    <string name="unlock_kerberos">Ontsluit Kerberos</string>
+    <string name="authenticate_access_vault">Verifieer om toegang tot jou kluis te kry</string>
+</resources>

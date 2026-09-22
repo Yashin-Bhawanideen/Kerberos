@@ -15,9 +15,6 @@ class KerberosNotificationManager(private val context: Context) {
 
     companion object {
         const val SECURITY_CHANNEL_ID = "kerberos_security"
-        private const val SECURITY_CHANNEL_NAME = "Security Alerts"
-        private const val SECURITY_CHANNEL_DESCRIPTION =
-            "Security and account activity alerts"
     }
 
     init {
@@ -30,10 +27,10 @@ class KerberosNotificationManager(private val context: Context) {
 
         val channel = NotificationChannel(
             SECURITY_CHANNEL_ID,
-            SECURITY_CHANNEL_NAME,
+            context.getString(R.string.security_alerts),
             NotificationManager.IMPORTANCE_HIGH
         ).apply {
-            description = SECURITY_CHANNEL_DESCRIPTION
+            description = context.getString(R.string.security_channel_description)
         }
 
         notificationManager.createNotificationChannel(channel)
@@ -49,8 +46,8 @@ class KerberosNotificationManager(private val context: Context) {
             SECURITY_CHANNEL_ID
         )
             .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle("Security alert")
-            .setContentText("A new device signed in to your Kerberos account.")
+            .setContentTitle(context.getString(R.string.security_alert))
+            .setContentText(context.getString(R.string.new_device_login))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
             .build()
@@ -71,8 +68,8 @@ class KerberosNotificationManager(private val context: Context) {
             SECURITY_CHANNEL_ID
         )
             .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle("Sync failed")
-            .setContentText("Kerberos could not synchronize your latest changes.")
+            .setContentTitle(context.getString(R.string.sync_failed))
+            .setContentText(context.getString(R.string.sync_failure_message))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
             .build()

@@ -36,6 +36,8 @@ import com.example.kerberos.data.VaultViewModel
 import com.example.kerberos.ui.theme.KerberosBlue
 import com.example.kerberos.ui.theme.KerberosGrayText
 import kotlin.random.Random
+import androidx.compose.ui.res.stringResource
+import com.example.kerberos.R
 
 @Composable
 fun AddCredentialScreen(
@@ -57,7 +59,11 @@ fun AddCredentialScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             TextButton(onClick = onBack) { Text("\u2190") }
-            Text("Add Credential", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            Text(
+                stringResource(R.string.add_credential),
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp
+            )
             Spacer(Modifier.weight(1f))
             TextButton(
                 onClick = {
@@ -67,63 +73,74 @@ fun AddCredentialScreen(
                 },
                 enabled = serviceName.isNotBlank() && username.isNotBlank() && password.isNotBlank()
             ) {
-                Text("Save", color = KerberosBlue, fontWeight = FontWeight.Bold)
+                Text(
+                    stringResource(R.string.save),
+                    color = KerberosBlue,
+                    fontWeight = FontWeight.Bold
+                )
             }
         }
         Spacer(Modifier.height(16.dp))
 
-        FieldLabel("SERVICE NAME")
+        FieldLabel(stringResource(R.string.service_name))
         OutlinedTextField(
             value = serviceName, onValueChange = { serviceName = it },
-            placeholder = { Text("e.g. Google, GitHub...") },
+            placeholder = { Text(stringResource(R.string.service_name_example)) },
             leadingIcon = { Icon(Icons.Filled.Language, contentDescription = null) },
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(Modifier.height(16.dp))
 
-        FieldLabel("USERNAME / EMAIL")
+        FieldLabel(stringResource(R.string.username_email))
         OutlinedTextField(
             value = username, onValueChange = { username = it },
-            placeholder = { Text("your@email.com") },
+            placeholder = { Text(stringResource(R.string.email_example)) },
             leadingIcon = { Icon(Icons.Filled.Person, contentDescription = null) },
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(Modifier.height(16.dp))
 
-        FieldLabel("PASSWORD")
+        FieldLabel(stringResource(R.string.password))
         OutlinedTextField(
             value = password, onValueChange = { password = it },
-            placeholder = { Text("Enter or generate a password") },
+            placeholder = { Text(stringResource(R.string.password_placeholder)) },
             leadingIcon = { Icon(Icons.Filled.Lock, contentDescription = null) },
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
                 IconButton(onClick = { passwordVisible = !passwordVisible }) {
                     Icon(
                         if (passwordVisible) Icons.Filled.VisibilityOff else Icons.Filled.Visibility,
-                        contentDescription = if (passwordVisible) "Hide password" else "Show password"
+                        contentDescription = if (passwordVisible) {
+                            stringResource(R.string.hide_password)
+                        } else {
+                            stringResource(R.string.show_password)
+                        }
                     )
                 }
             },
             modifier = Modifier.fillMaxWidth()
         )
         TextButton(onClick = { password = generateStrongPassword() }) {
-            Text("\u26A1 Generate strong password", color = KerberosBlue)
+            Text(
+                stringResource(R.string.generate_strong_password),
+                color = KerberosBlue
+            )
         }
         Spacer(Modifier.height(4.dp))
 
-        FieldLabel("WEBSITE URL")
+        FieldLabel(stringResource(R.string.website_url))
         OutlinedTextField(
             value = url, onValueChange = { url = it },
-            placeholder = { Text("https://example.com") },
+            placeholder = { Text(stringResource(R.string.website_example)) },
             leadingIcon = { Icon(Icons.Filled.Language, contentDescription = null) },
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(Modifier.height(16.dp))
 
-        FieldLabel("NOTES")
+        FieldLabel(stringResource(R.string.notes))
         OutlinedTextField(
             value = notes, onValueChange = { notes = it },
-            placeholder = { Text("Optional notes about this credential...") },
+            placeholder = { Text(stringResource(R.string.notes_placeholder)) },
             modifier = Modifier.fillMaxWidth().height(90.dp)
         )
         Spacer(Modifier.height(24.dp))
@@ -138,7 +155,10 @@ fun AddCredentialScreen(
             colors = ButtonDefaults.buttonColors(containerColor = KerberosBlue),
             enabled = serviceName.isNotBlank() && username.isNotBlank() && password.isNotBlank()
         ) {
-            Text("Add Credential", fontWeight = FontWeight.Bold)
+            Text(
+                stringResource(R.string.add_credential),
+                fontWeight = FontWeight.Bold
+            )
         }
     }
 }

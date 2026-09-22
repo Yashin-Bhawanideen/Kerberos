@@ -1,3 +1,82 @@
 <resources>
     <string name="app_name">Kerberos</string>
+
+
+    <string name="settings">Settings</string>
+    <string name="biometric_authentication">Biometric authentication</string>
+    <string name="biometric_description">Use fingerprint or face authentication to unlock the vault</string>
+    <string name="security_notifications">Security notifications</string>
+    <string name="security_notifications_description">Receive alerts about security events</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="afrikaans">Afrikaans</string>
+    <string name="sign_out">Sign out</string>
+
+    <string name="kerberos_logo">Kerberos logo</string>
+    <string name="passwords_secured">Your passwords, secured by design</string>
+    <string name="zero_knowledge">Zero-Knowledge</string>
+    <string name="two_fa_ready">2FA Ready</string>
+    <string name="open_source">Open Source</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="sign_in_secure_vault">Sign in to access your secure vault</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="simulate_sign_in_error">Simulate sign-in error</string>
+    <string name="google_sign_in_failed">Google sign-in failed: %1$s</string>
+    <string name="or">OR</string>
+    <string name="sign_in_master_password">Sign in with master password</string>
+
+    <string name="add">Add</string>
+    <string name="notifications">Notifications</string>
+    <string name="good_morning">Good morning,</string>
+    <string name="search_credentials">Search credentials...</string>
+    <string name="credentials">Credentials</string>
+    <string name="secured">Secured</string>
+    <string name="last_sync">Last Sync</string>
+    <string name="your_credentials">Your Credentials</string>
+    <string name="sort">Sort</string>
+
+    <string name="vault_locked">Vault Locked</string>
+    <string name="authenticate_vault">Authenticate to access your Kerberos vault.</string>
+    <string name="unlock_vault">Unlock Vault</string>
+
+    <string name="add_credential">Add Credential</string>
+    <string name="save">Save</string>
+    <string name="service_name">SERVICE NAME</string>
+    <string name="service_name_example">e.g. Google, GitHub...</string>
+    <string name="username_email">USERNAME / EMAIL</string>
+    <string name="email_example">your@email.com</string>
+    <string name="password">PASSWORD</string>
+    <string name="password_placeholder">Enter or generate a password</string>
+    <string name="hide_password">Hide password</string>
+    <string name="show_password">Show password</string>
+    <string name="generate_strong_password">Generate strong password</string>
+    <string name="website_url">WEBSITE URL</string>
+    <string name="website_example">https://example.com</string>
+    <string name="notes">NOTES</string>
+    <string name="notes_placeholder">Optional notes about this credential...</string>
+
+    <string name="credential_details">Credential Details</string>
+    <string name="edit">Edit</string>
+    <string name="modified_recently">Modified recently</string>
+    <string name="username">USERNAME</string>
+    <string name="website">WEBSITE</string>
+    <string name="copy_username">Copy username</string>
+    <string name="copy_password">Copy password</string>
+    <string name="copy_website">Copy website</string>
+    <string name="delete_credential">Delete Credential</string>
+    <string name="delete_credential_question">Delete credential?</string>
+    <string name="delete_warning">This cannot be undone.</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="security_alerts">Security Alerts</string>
+    <string name="security_channel_description">Security and account activity alerts</string>
+    <string name="security_alert">Security alert</string>
+    <string name="new_device_login">A new device signed in to your Kerberos account.</string>
+    <string name="sync_failed">Sync failed</string>
+    <string name="sync_failure_message">Kerberos could not synchronize your latest changes.</string>
+
+    <string name="unlock_kerberos">Unlock Kerberos</string>
+    <string name="authenticate_access_vault">Authenticate to access your vault</string>
 </resources>
+

@@ -49,6 +49,7 @@ import com.example.kerberos.ui.theme.KerberosLightBlueText
 import com.example.kerberos.ui.theme.KerberosNavy
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
+import androidx.compose.ui.res.stringResource
 
 @Composable
 fun LoginScreen(
@@ -57,6 +58,7 @@ fun LoginScreen(
 ) {
     val authState by viewModel.authState.collectAsState()
     var errorMsg by remember { mutableStateOf<String?>(null) }
+    val googleSignInFailed = stringResource(R.string.google_sign_in_failed)
 
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult()
@@ -66,7 +68,7 @@ fun LoginScreen(
             val account = task.getResult(ApiException::class.java)
             account.idToken?.let { viewModel.onGoogleIdTokenReceived(it) }
         } catch (e: ApiException) {
-            errorMsg = "Google sign-in failed: ${e.message}"
+            errorMsg = googleSignInFailed.format(e.message ?: "")
         }
     }
 
@@ -91,7 +93,7 @@ fun LoginScreen(
         ) {
             Image(
                 painter = painterResource(id = R.drawable.ic_kerberos_logo),
-                contentDescription = "Kerberos logo",
+                contentDescription = stringResource(R.string.kerberos_logo),
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .size(88.dp)
@@ -100,16 +102,20 @@ fun LoginScreen(
             Spacer(Modifier.height(16.dp))
             Text("Kerberos", color = Color.White, fontSize = 32.sp, fontWeight = FontWeight.Bold)
             Text(
-                "Your passwords, secured by design",
+                stringResource(R.string.passwords_secured),
                 color = KerberosLightBlueText,
                 fontSize = 14.sp
             )
             Spacer(Modifier.height(16.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                listOf("AES-256", "Zero-Knowledge", "2FA Ready").forEach { Badge(it) }
+                listOf(
+                    "AES-256",
+                    stringResource(R.string.zero_knowledge),
+                    stringResource(R.string.two_fa_ready)
+                ).forEach { Badge(it) }
             }
             Spacer(Modifier.height(8.dp))
-            Badge("Open Source")
+            Badge(stringResource(R.string.open_source))
         }
 
         // Bottom sign-in sheet
@@ -120,8 +126,17 @@ fun LoginScreen(
                 .background(Color.White, RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp))
                 .padding(24.dp)
         ) {
-            Text("Welcome back", fontSize = 22.sp, fontWeight = FontWeight.Bold)
-            Text("Sign in to access your secure vault", color = KerberosGrayText, fontSize = 13.sp)
+            Text(
+                stringResource(R.string.welcome_back),
+                fontSize = 22.sp,
+                fontWeight = FontWeight.Bold
+            )
+
+            Text(
+                stringResource(R.string.sign_in_secure_vault),
+                color = KerberosGrayText,
+                fontSize = 13.sp
+            )
             Spacer(Modifier.height(20.dp))
 
             OutlinedButton(
@@ -131,7 +146,10 @@ fun LoginScreen(
             ) {
                 GoogleGIcon()
                 Spacer(Modifier.width(8.dp))
-                Text("Continue with Google", color = Color.Black)
+                Text(
+                    stringResource(R.string.continue_with_google),
+                    color = Color.Black
+                )
             }
 
             Spacer(Modifier.height(8.dp))
@@ -139,7 +157,11 @@ fun LoginScreen(
                 onClick = { viewModel.simulateSignInError() },
                 modifier = Modifier.align(Alignment.End)
             ) {
-                Text("Simulate sign-in error \u2192", fontSize = 12.sp, color = KerberosGrayText)
+                Text(
+                    stringResource(R.string.simulate_sign_in_error),
+                    fontSize = 12.sp,
+                    color = KerberosGrayText
+                )
             }
 
             errorMsg?.let {
@@ -148,7 +170,7 @@ fun LoginScreen(
 
             Spacer(Modifier.height(8.dp))
             Text(
-                "OR",
+                stringResource(R.string.or),
                 color = KerberosGrayText,
                 fontSize = 12.sp,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
@@ -162,7 +184,10 @@ fun LoginScreen(
             ) {
                 Icon(Icons.Filled.VpnKey, contentDescription = null, tint = KerberosBlue)
                 Spacer(Modifier.width(8.dp))
-                Text("Sign in with master password", color = KerberosBlue)
+                Text(
+                    stringResource(R.string.sign_in_master_password),
+                    color = KerberosBlue
+                )
             }
         }
     }
