@@ -32,15 +32,15 @@ Kerberos Android Application [ADD APPLICATION VIDEO LINK] Should cover the compl
 
 # Biometric System
 
-<img width="738" height="1599" alt="image" src="https://github.com/user-attachments/assets/35feb522-4d24-43fe-bfd2-e98ee5c81fc6" />
+<img width="300" height="600" alt="image" src="https://github.com/user-attachments/assets/35feb522-4d24-43fe-bfd2-e98ee5c81fc6" />
 
 # Home/Main page
 
-<img width="738" height="1599" alt="image" src="https://github.com/user-attachments/assets/6c8b502d-cf61-4a85-8eab-df85b2b1e196" />
+<img width="300" height="600" alt="image" src="https://github.com/user-attachments/assets/6c8b502d-cf61-4a85-8eab-df85b2b1e196" />
 
 # Add Credential CRUD
 
-<img width="738" height="1599" alt="image" src="https://github.com/user-attachments/assets/29f0d9aa-fe54-494f-b9bd-b34d612cf411" />
+<img width="300" height="600" alt="image" src="https://github.com/user-attachments/assets/29f0d9aa-fe54-494f-b9bd-b34d612cf411" />
 
 # Firebase Firestore Database storing user credentials
 
