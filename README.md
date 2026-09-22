@@ -28,7 +28,7 @@ Kerberos Android Application [ADD APPLICATION VIDEO LINK] Should cover the compl
 # Screenshots and Technical Evidence
 # Google Sign-in
 
-<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/7872c6e0-84e9-461f-a679-d05b82609add" />
+<img width="500" height="1000" alt="image" src="https://github.com/user-attachments/assets/7872c6e0-84e9-461f-a679-d05b82609add" />
 
 # Biometric System
 
