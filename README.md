@@ -1,5 +1,9 @@
 # Kerberos — Password Manager
 
+# GitHub that was used for version control & proper GitHub workflows that work
+
+
+
 # Scope and Purpose of the Kerberos Password Manager
 Users can save and manage login credentials for their websites and apps in a single protected vault with Kerberos, a safe password management app for Android. Its goal is to make robust security simple to use, especially for individuals with numerous online accounts, in order to address frequent issues like password reuse and insecure storage. A Kotlin Android client, an ASP.NET Core REST API protected by HTTPS and JWT tokens, a PostgreSQL database, and a local Room database on the device for offline use comprise the three-tier system covered by the scope. Users of that system can use fingerprint or face recognition to unlock the vault after logging in using Google Single Sign-On. Credentials (service name, username or email, password, website URL, and optional notes) can be created, viewed, edited, and deleted; passwords are automatically concealed. Additionally, the app has a settings page, support for at least two South African languages, a customisable password generator, Android Autofill recommendations, offline access with automatic syncing once the connection is restored, and real-time security notifications (like a new device being authorised) that never display passwords.
 
