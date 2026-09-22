@@ -4,9 +4,9 @@
 The link provided is public for viewing: 
 https://github.com/Yashin-Bhawanideen/Kerberos.git
 
-<img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/464d4dad-c6e1-42f4-8609-ddbe46106acb" />
+<img width="1600" height="1000" alt="image" src="https://github.com/user-attachments/assets/464d4dad-c6e1-42f4-8609-ddbe46106acb" />
 
-<img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/d6af15d4-4141-45a3-8e14-95b5a51ccbc9" />
+<img width="1600" height="1000" alt="image" src="https://github.com/user-attachments/assets/d6af15d4-4141-45a3-8e14-95b5a51ccbc9" />
 
 # Demonstration Videos
 Two demonstration videos are required for the final submission.
