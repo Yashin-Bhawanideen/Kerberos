@@ -12,7 +12,7 @@
 The link provided is public for viewing: 
 https://github.com/Yashin-Bhawanideen/Kerberos.git
 
-<img width="1500" height="800" alt="image" src="https://github.com/user-attachments/assets/464d4dad-c6e1-42f4-8609-ddbe46106acb" />
+<img width="1662" height="632" alt="image" src="https://github.com/user-attachments/assets/464d4dad-c6e1-42f4-8609-ddbe46106acb" />
 
 # Tests that succeeded
 
