@@ -113,8 +113,10 @@ fun KerberosNavGraph() {
             SettingsScreen(
                 settingsManager = settingsManager,
                 onSignOut = {
+                    authViewModel.signOut()
+
                     navController.navigate("login") {
-                        popUpTo("vault") {
+                        popUpTo(0) {
                             inclusive = true
                         }
                     }

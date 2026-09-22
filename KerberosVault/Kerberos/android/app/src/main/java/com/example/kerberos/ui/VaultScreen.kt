@@ -87,13 +87,12 @@ fun VaultScreen(
     val lastSyncedText by vaultViewModel.lastSyncedText.collectAsState()
 
     // Automatically prompts for biometric auth as soon as the screen
+    //checks biometric setting before locking the vault (Android Developers, 2025)
     LaunchedEffect(isVaultUnlocked) {
-        if (
-            !isVaultUnlocked &&
-            activity != null &&
-            settingsManager.isBiometricEnabled()
-        ) {
-            if (biometricAuthenticator.canAuthenticate()) {
+        if (!isVaultUnlocked) {
+            if (!settingsManager.isBiometricEnabled()) {
+                vaultViewModel.unlockVault()
+            } else if (activity != null && biometricAuthenticator.canAuthenticate()) {
                 biometricAuthenticator.authenticate(
                     activity = activity,
                     onSuccess = { vaultViewModel.unlockVault() },
@@ -426,3 +425,6 @@ fun CredentialRow(
 //Available at: https://www.geeksforgeeks.org/android/responsive-ui-design-in-android/
 //Pathak, A., 2026. What is System UI. [Online]
 //Available at: https://www.browserstack.com/guide/what-is-system-ui
+//Android Developers, 2025. Show a biometric authentication dialog. [Online]
+//Available at: https://developer.android.com/identity/sign-in/biometric-auth
+//[Accessed 22 September 2026].
