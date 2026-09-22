@@ -5,7 +5,7 @@
     <string name="settings">Settings</string>
     <string name="biometric_authentication">Biometric authentication</string>
     <string name="biometric_description">Use fingerprint or face authentication to unlock the vault</string>
-    <string name="security_notifications">Security notification</string>
+    <string name="security_notifications">Security notifications</string>
     <string name="security_notifications_description">Receive alerts about security events</string>
     <string name="language">Language</string>
     <string name="english">English</string>
@@ -20,7 +20,7 @@
     <string name="welcome_back">Welcome back</string>
     <string name="sign_in_secure_vault">Sign in to access your secure vault</string>
     <string name="continue_with_google">Continue with Google</string>
-    <string name="simulate_sign_in_error">Simulate sign-in error →</string>
+    <string name="simulate_sign_in_error">Simulate sign-in error</string>
     <string name="google_sign_in_failed">Google sign-in failed: %1$s</string>
     <string name="or">OR</string>
     <string name="sign_in_master_password">Sign in with master password</string>
@@ -33,7 +33,7 @@
     <string name="secured">Secured</string>
     <string name="last_sync">Last Sync</string>
     <string name="your_credentials">Your Credentials</string>
-    <string name="sort">Sort ›</string>
+    <string name="sort">Sort</string>
 
     <string name="vault_locked">Vault Locked</string>
     <string name="authenticate_vault">Authenticate to access your Kerberos vault.</string>
@@ -49,7 +49,7 @@
     <string name="password_placeholder">Enter or generate a password</string>
     <string name="hide_password">Hide password</string>
     <string name="show_password">Show password</string>
-    <string name="generate_strong_password">⚡ Generate strong password</string>
+    <string name="generate_strong_password">Generate strong password</string>
     <string name="website_url">WEBSITE URL</string>
     <string name="website_example">https://example.com</string>
     <string name="notes">NOTES</string>
@@ -67,6 +67,17 @@
     <string name="delete_credential_question">Delete credential?</string>
     <string name="delete_warning">This cannot be undone.</string>
     <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="security_alerts">Security Alerts</string>
+    <string name="security_channel_description">Security and account activity alerts</string>
+    <string name="security_alert">Security alert</string>
+    <string name="new_device_login">A new device signed in to your Kerberos account.</string>
+    <string name="sync_failed">Sync failed</string>
+    <string name="sync_failure_message">Kerberos could not synchronize your latest changes.</string>
+
+    <string name="unlock_kerberos">Unlock Kerberos</string>
+    <string name="authenticate_access_vault">Authenticate to access your vault</string>
     <string name="cancel">Cancel</string>
 </resources>
 

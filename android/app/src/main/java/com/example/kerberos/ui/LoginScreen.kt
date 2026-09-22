@@ -93,7 +93,7 @@ fun LoginScreen(
         ) {
             Image(
                 painter = painterResource(id = R.drawable.ic_kerberos_logo),
-                contentDescription = "Kerberos logo",
+                contentDescription = stringResource(R.string.kerberos_logo),
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .size(88.dp)
