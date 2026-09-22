@@ -1,78 +1,121 @@
 # Kerberos — Password Manager
 
-# GitHub that was used for version control & proper GitHub workflows that work
+# This GitHub that was used for version control & proper GitHub workflows that work + Contributors
+The link provided is public for viewing: 
+https://github.com/Yashin-Bhawanideen/Kerberos.git
+
+<img width="1637" height="802" alt="image" src="https://github.com/user-attachments/assets/464d4dad-c6e1-42f4-8609-ddbe46106acb" />
+
+# Demonstration Videos
+Two demonstration videos are required for the final submission.
+
+REST API Creation, Operation, and Deployment [ADD API VIDEO LINK] Should cover the structure of the ASP.NET Core REST API, how it operates, its communication with Firestore, and how it's deployed.
+
+Kerberos Android Application [ADD APPLICATION VIDEO LINK] Should cover the completed app and its core functionality — Google Single Sign-On, settings, credential management, REST API integration, cloud data, and the user-defined features.
+
+# Screenshots and Technical Evidence
+Google Sign-in
 
 
+# Overview
+Kerberos is a native Android password manager that gives users a secure, convenient way to store and manage their login credentials — replacing unsafe habits like password reuse or storing credentials in plain text. Users can save, view, edit, and delete entries containing a service name, username or email, password, website URL, and optional notes, with required fields validated before anything is saved.
+Beyond core credential management, Kerberos includes biometric vault protection, a customisable password generator, English and Afrikaans language support, and offline storage with automatic cloud synchronisation.
 
-# Scope and Purpose of the Kerberos Password Manager
-Users can save and manage login credentials for their websites and apps in a single protected vault with Kerberos, a safe password management app for Android. Its goal is to make robust security simple to use, especially for individuals with numerous online accounts, in order to address frequent issues like password reuse and insecure storage. A Kotlin Android client, an ASP.NET Core REST API protected by HTTPS and JWT tokens, a PostgreSQL database, and a local Room database on the device for offline use comprise the three-tier system covered by the scope. Users of that system can use fingerprint or face recognition to unlock the vault after logging in using Google Single Sign-On. Credentials (service name, username or email, password, website URL, and optional notes) can be created, viewed, edited, and deleted; passwords are automatically concealed. Additionally, the app has a settings page, support for at least two South African languages, a customisable password generator, Android Autofill recommendations, offline access with automatic syncing once the connection is restored, and real-time security notifications (like a new device being authorised) that never display passwords.
+# Tech stack:
+Android app: Kotlin
+Authentication: Google Single Sign-On via Firebase Authentication
+Local storage: Room database (offline support)
+Backend API: ASP.NET Core REST API, hosted on Microsoft Azure
+Cloud database: Firebase Firestore
 
-# Structural Design and Architectural choice
-Kerberos employs a three-tier architecture that divides the PostgreSQL database, the Android client, and the ASP.NET Core REST API (written in C#). This allows each layer to have distinct responsibilities and be independently developed, secured, and maintained. A user interface and navigation layer, ViewModels that store screen state and handle user actions, and a repository layer that interacts with the REST API, manages authentication and synchronisation, and exchanges JSON over HTTPS comprise the client's Kotlin application. Instead of using proprietary solutions, Android uses its own biometric and Autofill frameworks for device-level security. Since offline support is a crucial design factor, vault data is stored in a local Room database. Each credential has a SyncStatus field that indicates local modifications for synchronisation once connectivity recovers, ensuring that data is accessible even in the event of a sync failure. Before reaching application services like the Credential and User services, requests go via authentication and authorisation middleware on the server side, which verifies the JWT (returning 401 or 403 if needed) and field validation (returning 400 for incorrect input). These services access PostgreSQL through Entity Framework Core, and the API returns JSON with appropriate HTTP status codes. Security is built into the data design as well, since Google SSO handles authentication, every credential is tied to a UserId so the API can ensure users only access their own data, passwords must be encrypted, and notifications and autofill never expose passwords. Finally, Android localisation resources keep user-facing text separate from the code, making it easy to add more languages in the future.
+# Architecture
+Kerberos follows a layered architecture that cleanly separates the Android client, the REST API, and the cloud database:
+Android (Kotlin) Application  →  ASP.NET Core REST API (Azure)  →  Firebase Firestore
+Android application — UI and navigation, ViewModels for screen state, repositories for data operations, and a local Room database that keeps credentials available offline.
+REST API — Built with ASP.NET Core and C#, organised into controllers, models, and services. The Android app communicates with it via Retrofit over HTTPS, using JSON requests. Every credential is tied to its authenticated owner, and requests carry an authentication token so the API can identify the correct user.
 
-# ASP.NET API Cloud Host
-Hosted on Azure - account controlled by Mishal Bhikha
+# Data flow:
 
-# Backend Database Host
-Hosted on Firebase - account controlled by Yashin Bhawanideen
+Google Sign-In / Firebase Authentication
+        ↓
+Kerberos Android Application
+        ↓
+Local Room Database
+        ↓
+Retrofit REST Requests
+        ↓
+ASP.NET Core REST API (Azure)
+        ↓
+Firebase Firestore
 
-# Ensure that the firebase-service.json is in this path:
-C:\Users\Kerberos\api\Kerberos.Api
+The local database lets Kerberos keep working when there's no internet connection. Any change that still needs to reach the cloud is marked with a synchronisation state and picked up by the sync worker once connectivity returns.
 
-# Ensure the the google-services.json is in this path:
-C:\Users\Kerberos\android\app
+# Authentication — Google Single Sign-On
+Instead of creating a separate Kerberos-only account, users sign in with their existing Google account through Firebase Authentication, which also secures every request made to the REST API — keeping unauthenticated users out of protected credential operations. This flow has been verified on a physical Android device.
 
-# First time opening the project
-1. Open Android Studio.
-2. File → Open → navigate to the android/ folder inside the extracted zip (not the root Kerberos/ folder — open android/ specifically, since that's the actual Gradle project root). {Kerberos/android} > open the android file
-3. Android Studio will detect the Gradle files and start syncing automatically. You'll see a progress bar at the bottom labeled "Gradle sync" or similar.
+# Biometric Vault Protection
+For an extra layer of security, users can enable biometric authentication from the Settings screen. When turned on, the vault stays locked until the user authenticates with a supported biometric method. This preference is saved and persists across app restarts.
 
-# First time running the application, this include the API + Android Studio
-1. To run the project, first start the API: open a terminal or cmd, navigate into the API folder with `cd C:\Users\Downloads\Kerberos\api\Kerberos.Api`, then run `dotnet restore` followed by `dotnet run`. Leave this terminal open — once it prints "Now listening on: http://localhost:5000" (or whichever port it picks), the API is live and needs to keep running the whole time you're testing.
-2. Next, open the Android project in Android Studio (the `android/` folder), and edit `app/src/main/java/com/example/kerberos/network/RetrofitClient.kt` to set `BASE_URL` to `http://10.0.2.2:5000/` if you're using the emulator (or your PC's local network IP, like `http://192.168.1.42:5000/`, if testing on a physical device on the same Wi-Fi). Since the API runs over plain HTTP locally, also open `app/src/main/AndroidManifest.xml` and temporarily set `android:usesCleartextTraffic="true"` so Android doesn't block the connection. 
-3. Then sync Gradle (**File → Sync Project with Gradle Files**) and hit Run to launch the app on your emulator or device — with the API terminal still running in the background, sign in with Google and add a test credential to confirm the whole chain (Android app → API → Firestore) is working end to end.
+Settings
+The Settings screen lets users control:
+Biometric vault protection
+Notification preferences
+Application language
+Sign out
+All settings are persisted and survive an app restart. Language support currently covers English and Afrikaans, implemented through Android's localisation resources so user-facing text can be translated without touching application logic.
 
-# FI: 
-If you change code or add code, always sync the project (because android studio likes to be difficult), before you run the program.
-If you don't see the sync button check (**File → Sync Project with Gradle Files**)
+# REST API
+A dedicated ASP.NET Core REST API handles all credential operations, organised into controllers, models, and services for maintainability. It supports the full CRUD set required by the vault:
+Create a credential
+Read credentials
+Update a credential
+Delete a credential
 
-# Firebase Database
-You guys have access to the database, you don't need to edit anything in the database regarding adding a user or login details, the API will create the forms or data automatically to the database when a user signs into the app. Otherwise if you need to do neccessary changes you may do so as an 'Editor' of the database. 
+# Offline Storage and Synchronisation
+Credentials are stored locally with Room, which underpins Kerberos's offline functionality. Each credential carries synchronisation metadata indicating whether it still needs to be created, updated, or deleted in the cloud, and a background worker processes these pending changes against the REST API when a connection is available.
+Synchronisation events are logged via Android logging for visibility during development and testing — the request bodies themselves are deliberately excluded from these logs to avoid exposing credential data.
 
-# Folder Structure
+#Credential Management
+From inside the protected vault, users can:
+Add credentials
+View saved credentials
+Edit credentials
+Delete credentials
+Show or hide passwords
+Store credentials locally
+Sync credentials to the cloud
 
-**Kerberos**
-    .gitignore
-    README
+# Password Generator
+Kerberos includes a built-in, customisable password generator so users never have to leave the app to create a strong password. Users choose a length between 8 and 32 characters and select which character types to include:
+Uppercase letters
+Lowercase letters
+Numbers
+Symbols
 
-    android
-      .gradle
-      .idea
-      .kotlin
-      app
-      build
-      gradle
-      build.gradle
-      gradle(properties)
-      gradlew(file)
-      gradlew(windows batch file)
-      local
-      settings.gradle
+# Key User-Defined Features
+1. Offline Storage with Cloud Synchronisation Credentials live locally in Room and sync to Firestore through the custom REST API, with synchronisation states tracking which credentials still need cloud operations.
+2. Multi-Language Support English and Afrikaans are supported, switchable from Settings, with the selection persisting across restarts.
+3. Customisable Password Generator Users control both password length and character composition when generating new passwords.
 
-    api
-      firestore.rules
-      Kerberos.Api
-        bin
-        Controllers
-        Models
-        obj
-        Services
-        appsettings.json
-        firebase-service-account.json
-        Kerberos.Api.csproj
-        Program.cs
+# Getting Started — Android Project
+Clone or download the Kerberos repository.
+Open Android Studio.
+Select File → Open.
+Navigate to the Android Gradle project inside the Kerberos project.
+Open the android folder.
+Let Android Studio finish the Gradle sync.
+Make sure a valid google-services.json is present in android/app/.
+Connect a physical device or start an emulator.
+Build and run the app.
 
-     
+By default, the app talks to the deployed Azure-hosted API, so you don't need to run the API locally just to test against the live backend.
 
-  
+# Running the API Locally
+The API project lives at:
+api/Kerberos.Api/
+From that directory, run:
+dotnet restore
+dotnet run
+
+You'll need a valid Firebase service account configuration and the required application settings available locally. As always, never upload private keys or service account credentials to the public repository.
 
