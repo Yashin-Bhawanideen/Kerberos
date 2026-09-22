@@ -75,5 +75,11 @@
     <string name="delete_credential_confirm_body">This cannot be undone.</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
+
+    <string name="password_length">Password length: %1$d</string>
+    <string name="uppercase">Uppercase</string>
+    <string name="lowercase">Lowercase</string>
+    <string name="numbers">Numbers</string>
+    <string name="symbols">Symbols</string>
 </resources>
 

@@ -37,8 +37,9 @@ import com.example.kerberos.R
 import com.example.kerberos.data.VaultViewModel
 import com.example.kerberos.ui.theme.KerberosBlue
 import com.example.kerberos.ui.theme.KerberosGrayText
-import kotlin.random.Random
-
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Slider
+import com.example.kerberos.PasswordGenerator
 // Form screen for adding a new credential: service name, username, password
 // (with generator + show/hide toggle), URL, and notes
 @Composable
@@ -53,6 +54,11 @@ fun AddCredentialScreen(
     var url by remember { mutableStateOf("") }
     var notes by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
+    var passwordLength by remember { mutableStateOf(16f) }
+    var useUppercase by remember { mutableStateOf(true) }
+    var useLowercase by remember { mutableStateOf(true) }
+    var useNumbers by remember { mutableStateOf(true) }
+    var useSymbols by remember { mutableStateOf(true) }
 
     Column(modifier = Modifier.fillMaxSize().padding(20.dp)) {
 
@@ -115,9 +121,61 @@ fun AddCredentialScreen(
             },
             modifier = Modifier.fillMaxWidth()
         )
-        TextButton(onClick = { password = generateStrongPassword() }) {
-            Text(stringResource(R.string.generate_password), color = KerberosBlue)
+        Text(
+            text = stringResource(R.string.password_length, passwordLength.toInt()),
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold
+        )
+
+        Slider(
+            value = passwordLength,
+            onValueChange = { passwordLength = it },
+            valueRange = 8f..32f,
+            steps = 23
+        )
+
+        PasswordOption(
+            text = stringResource(R.string.uppercase),
+            checked = useUppercase,
+            onCheckedChange = { useUppercase = it }
+        )
+
+        PasswordOption(
+            text = stringResource(R.string.lowercase),
+            checked = useLowercase,
+            onCheckedChange = { useLowercase = it }
+        )
+
+        PasswordOption(
+            text = stringResource(R.string.numbers),
+            checked = useNumbers,
+            onCheckedChange = { useNumbers = it }
+        )
+
+        PasswordOption(
+            text = stringResource(R.string.symbols),
+            checked = useSymbols,
+            onCheckedChange = { useSymbols = it }
+        )
+
+        TextButton(
+            onClick = {
+                password = PasswordGenerator.generate(
+                    length = passwordLength.toInt(),
+                    useUppercase = useUppercase,
+                    useLowercase = useLowercase,
+                    useNumbers = useNumbers,
+                    useSymbols = useSymbols
+                )
+            },
+            enabled = useUppercase || useLowercase || useNumbers || useSymbols
+        ) {
+            Text(
+                stringResource(R.string.generate_password),
+                color = KerberosBlue
+            )
         }
+
         Spacer(Modifier.height(4.dp))
 
         FieldLabel(stringResource(R.string.label_website_url))
@@ -128,6 +186,8 @@ fun AddCredentialScreen(
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(Modifier.height(16.dp))
+
+
 
         FieldLabel(stringResource(R.string.label_notes))
         OutlinedTextField(
@@ -152,18 +212,31 @@ fun AddCredentialScreen(
     }
 }
 
+
+
 @Composable
 private fun FieldLabel(text: String) {
     Text(text, fontSize = 11.sp, color = KerberosGrayText, fontWeight = FontWeight.Bold)
     Spacer(Modifier.height(4.dp))
 }
-// Generates a random password of mixed upper/lower/digit/symbol characters.
-// Note: uses kotlin.random.Random, which is not cryptographically secure —
-// worth considering java.security.SecureRandom for a password manager
-fun generateStrongPassword(length: Int = 16): String {
-    val chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*"
-    return (1..length).map { chars[Random.nextInt(chars.length)] }.joinToString("")
+
+@Composable
+private fun PasswordOption(
+    text: String,
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Checkbox(
+            checked = checked,
+            onCheckedChange = onCheckedChange
+        )
+        Text(text, fontSize = 13.sp)
+    }
 }
+
 //References
 //Android, 2025. Lazy lists and lazy grids. [Online]
 //Available at: https://developer.android.com/develop/ui/compose/lists

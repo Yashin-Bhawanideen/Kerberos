@@ -74,4 +74,10 @@
     <string name="delete_credential_confirm_body">Dit kan nie ontdaan word nie.</string>
     <string name="delete">Skrap</string>
     <string name="cancel">Kanselleer</string>
+
+    <string name="password_length">Wagwoordlengte: %1$d</string>
+    <string name="uppercase">Hoofletters</string>
+    <string name="lowercase">Kleinletters</string>
+    <string name="numbers">Nommers</string>
+    <string name="symbols">Simbole</string>
 </resources>
