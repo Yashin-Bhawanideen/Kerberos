@@ -14,8 +14,9 @@ object RetrofitClient {
     // Logs full request/response bodies; useful in dev, but leaking
     // credential payloads (including passwords) to Logcat is risky in
     // a build that could ship to users
+    //logs request information without exposing credential bodies
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
-        level = HttpLoggingInterceptor.Level.BODY
+        level = HttpLoggingInterceptor.Level.BASIC
     }
 
     // Attaches auth (e.g. bearer token) to every request, plus logging
