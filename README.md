@@ -20,7 +20,7 @@ Kerberos Android Application [ADD APPLICATION VIDEO LINK] Should cover the compl
 # Screenshots and Technical Evidence
 Google Sign-in
 
-<img width="300" height="400" alt="Picture2" src="https://github.com/user-attachments/assets/c488a849-843c-44ec-9ee1-5f6efd549ef6" />
+<img width="300" height="600" alt="Picture2" src="https://github.com/user-attachments/assets/c488a849-843c-44ec-9ee1-5f6efd549ef6" />
 
 Add Credential screen
 
