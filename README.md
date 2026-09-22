@@ -21,9 +21,9 @@ https://github.com/Yashin-Bhawanideen/Kerberos.git
 # Demonstration Videos
 Two demonstration videos are required for the final submission.
 
-REST API Creation, Operation, and Deployment [ADD API VIDEO LINK] Should cover the structure of the ASP.NET Core REST API, how it operates, its communication with Firestore, and how it's deployed.
+REST API Creation, Operation, and Deployment [https://youtu.be/9wLjVsSQQeE] Should cover the structure of the ASP.NET Core REST API, how it operates, its communication with Firestore, and how it's deployed.
 
-Kerberos Android Application [ADD APPLICATION VIDEO LINK] Should cover the completed app and its core functionality — Google Single Sign-On, settings, credential management, REST API integration, cloud data, and the user-defined features.
+Kerberos Android Application [https://youtu.be/H8XfeDhZUjQ ] Should cover the completed app and its core functionality — Google Single Sign-On, settings, credential management, REST API integration, cloud data, and the user-defined features.
 
 # Screenshots and Technical Evidence
 # Google Sign-in
