@@ -78,6 +78,5 @@
 
     <string name="unlock_kerberos">Unlock Kerberos</string>
     <string name="authenticate_access_vault">Authenticate to access your vault</string>
-    <string name="cancel">Cancel</string>
 </resources>
 

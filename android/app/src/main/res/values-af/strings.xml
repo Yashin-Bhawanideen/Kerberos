@@ -77,5 +77,4 @@
 
     <string name="unlock_kerberos">Ontsluit Kerberos</string>
     <string name="authenticate_access_vault">Verifieer om toegang tot jou kluis te kry</string>
-    <string name="cancel">Kanselleer</string>
 </resources>
