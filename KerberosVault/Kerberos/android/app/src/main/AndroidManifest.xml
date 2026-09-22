@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Required for network requests (e.g. syncing/authentication) -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Required to use fingerprint/face unlock for authentication -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <!-- Required on Android 13+ to display notifications to the user -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+        android:allowBackup="true"
+        android:label="Kerberos"
+        android:theme="@style/Theme.Kerberos"
+        android:usesCleartextTraffic="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round">
+
+        <!-- Main entry point of the app, launched from the home screen -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Kerberos">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <!-- Autofill service: lets the system request saved credentials -->
+        <!-- from this app to fill in login forms in other apps -->
+        <!--        Developers, A., 2026. Optimize your app for autofill. [Online]
+        Available at: https://developer.android.com/identity/autofill/autofill-optimize
+        -->
+        <service
+            android:name=".service.KerberosAutofillService"
+            android:permission="android.permission.BIND_AUTOFILL_SERVICE"
+            android:exported="true">
+
+            <!-- Declares this service as an Android AutofillService implementation -->
+            <intent-filter>
+                <action android:name="android.service.autofill.AutofillService" />
+            </intent-filter>
+
+            <!-- Points to the XML config describing what this service can autofill -->
+            <meta-data
+                android:name="android.autofill"
+                android:resource="@xml/autofill_service_config" />
+        </service>
+
+        <!-- Transparent activity used to authenticate the user (e.g. biometric prompt) -->
+        <!-- before releasing autofill data; not directly launched by the user -->
+        <activity
+            android:name=".service.AutofillAuthActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+    </application>
+</manifest>
+
+
+<!--References
+Developers, A., 2026. App architecture. [Online]
+Available at: https://developer.android.com/guide/topics/manifest/manifest-element
+Developers, A., 2026. Optimize your app for autofill. [Online]
+Available at: https://developer.android.com/identity/autofill/autofill-optimize
+Geek4geeks, 2025. Android Manifest File in Android. [Online]
+Available at: https://www.geeksforgeeks.org/android/application-manifest-file-in-android/
+kat, J., 2022. Implement autofill service in android app. [Online]
+Available at: https://stackoverflow.com/questions/71105041/implement-autofill-service-in-android-app
+
+-->
