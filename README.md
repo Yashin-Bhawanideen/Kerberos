@@ -4,10 +4,11 @@
 The link provided is public for viewing: 
 https://github.com/Yashin-Bhawanideen/Kerberos.git
 
-<img width="1600" height="1000" alt="image" src="https://github.com/user-attachments/assets/464d4dad-c6e1-42f4-8609-ddbe46106acb" />
+<img width="1500" height="800" alt="image" src="https://github.com/user-attachments/assets/464d4dad-c6e1-42f4-8609-ddbe46106acb" />
 
 Tests that succeeded
-<img width="1600" height="1000" alt="image" src="https://github.com/user-attachments/assets/d6af15d4-4141-45a3-8e14-95b5a51ccbc9" />
+
+<img width="1500" height="800" alt="image" src="https://github.com/user-attachments/assets/d6af15d4-4141-45a3-8e14-95b5a51ccbc9" />
 
 # Demonstration Videos
 Two demonstration videos are required for the final submission.
@@ -18,7 +19,8 @@ Kerberos Android Application [ADD APPLICATION VIDEO LINK] Should cover the compl
 
 # Screenshots and Technical Evidence
 Google Sign-in
-<img width="274" height="601" alt="Picture2" src="https://github.com/user-attachments/assets/c488a849-843c-44ec-9ee1-5f6efd549ef6" />
+
+<img width="300" height="400" alt="Picture2" src="https://github.com/user-attachments/assets/c488a849-843c-44ec-9ee1-5f6efd549ef6" />
 
 Add Credential screen
 
