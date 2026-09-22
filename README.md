@@ -1,11 +1,11 @@
 # Kerberos — Password Manager
 
 # Memebers involved
-•	ST10444715 Keegan Ewan Tromp
-•	ST10434249 Richard Hein
-•	ST10443463 Yashin Bhawanideen
-•	ST10443090 Amir Muller
-•	ST10450208 Mishal Bhikha
+- ST10444715 Keegan Ewan Tromp
+- ST10434249 Richard Hein
+- ST10443463 Yashin Bhawanideen
+- ST10443090 Amir Muller
+- ST10450208 Mishal Bhikha
 
 
 # This GitHub that was used for version control & proper GitHub workflows that work + Contributors
