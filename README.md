@@ -8,7 +8,7 @@ https://github.com/Yashin-Bhawanideen/Kerberos.git
 
 Tests that succeeded
 
-<img width="1500" height="800" alt="image" src="https://github.com/user-attachments/assets/d6af15d4-4141-45a3-8e14-95b5a51ccbc9" />
+<img width="1300" height="800" alt="image" src="https://github.com/user-attachments/assets/d6af15d4-4141-45a3-8e14-95b5a51ccbc9" />
 
 # Demonstration Videos
 Two demonstration videos are required for the final submission.
@@ -20,7 +20,7 @@ Kerberos Android Application [ADD APPLICATION VIDEO LINK] Should cover the compl
 # Screenshots and Technical Evidence
 Google Sign-in
 
-<img width="300" height="600" alt="Picture2" src="https://github.com/user-attachments/assets/c488a849-843c-44ec-9ee1-5f6efd549ef6" />
+
 
 Add Credential screen
 
