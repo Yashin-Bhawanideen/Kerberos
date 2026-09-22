@@ -28,7 +28,7 @@ Kerberos Android Application [ADD APPLICATION VIDEO LINK] Should cover the compl
 # Screenshots and Technical Evidence
 # Google Sign-in
 
-<img width="738" height="1599" alt="image" src="https://github.com/user-attachments/assets/7872c6e0-84e9-461f-a679-d05b82609add" />
+<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/7872c6e0-84e9-461f-a679-d05b82609add" />
 
 # Biometric System
 
@@ -149,6 +149,10 @@ The API project lives at:
 api/Kerberos.Api/
 From that directory, run:
 dotnet restore
+
+# Conclusion
+Kerberos is a secure Android password manager that pairs local, offline-first Android functionality with a custom cloud REST API. It brings together Google Single Sign-On, biometric vault protection, full credential CRUD, settings, localisation, password generation, offline Room storage, and cloud synchronisation through an ASP.NET Core API hosted on Azure and backed by Firebase Firestore.
+The project was built and tested incrementally with Git and GitHub, supported by automated unit testing and GitHub Actions CI to catch regressions as the codebase evolved. Together, the Android application, local database, custom REST API, authentication service, and cloud database demonstrate a complete, security-conscious credential management system.
 dotnet run
 
 You'll need a valid Firebase service account configuration and the required application settings available locally. As always, never upload private keys or service account credentials to the public repository.
