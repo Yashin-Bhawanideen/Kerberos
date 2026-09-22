@@ -43,6 +43,8 @@ import com.example.kerberos.data.VaultViewModel
 import com.example.kerberos.ui.theme.KerberosBlue
 import com.example.kerberos.ui.theme.KerberosDanger
 import com.example.kerberos.ui.theme.KerberosGrayText
+import androidx.compose.ui.res.stringResource
+import com.example.kerberos.R
 
 @Composable
 fun CredentialDetailScreen(
@@ -59,10 +61,15 @@ fun CredentialDetailScreen(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TextButton(onClick = onBack) { Text("\u2190 Credential Details") }
+            TextButton(onClick = onBack) {
+                Text("\u2190 ${stringResource(R.string.credential_details)}")
+            }
             Spacer(Modifier.weight(1f))
             TextButton(onClick = { /* navigate to edit - not yet implemented */ }) {
-                Text("Edit", color = KerberosBlue)
+                Text(
+                    stringResource(R.string.edit),
+                    color = KerberosBlue
+                )
             }
         }
         Spacer(Modifier.height(12.dp))
@@ -82,36 +89,54 @@ fun CredentialDetailScreen(
                 Column {
                     Text(credential.serviceName, fontWeight = FontWeight.Bold, fontSize = 16.sp)
                     Text(credential.websiteUrl, color = KerberosBlue, fontSize = 12.sp)
-                    Text("Modified recently", color = KerberosGrayText, fontSize = 11.sp)
+                    Text(
+                        stringResource(R.string.modified_recently),
+                        color = KerberosGrayText,
+                        fontSize = 11.sp
+                    )
                 }
             }
         }
         Spacer(Modifier.height(16.dp))
 
         DetailField(
-            label = "USERNAME",
+            label = stringResource(R.string.username),
             value = credential.username,
             trailing = {
-                IconButton(onClick = { clipboard.setText(AnnotatedString(credential.username)) }) {
-                    Icon(Icons.Filled.ContentCopy, contentDescription = "Copy username")
+                IconButton(
+                    onClick = {
+                        clipboard.setText(AnnotatedString(credential.username))
+                    }
+                ) {
+                    Icon(
+                        Icons.Filled.ContentCopy,
+                        contentDescription = stringResource(R.string.copy_username)
+                    )
                 }
             }
         )
         Spacer(Modifier.height(12.dp))
 
         DetailField(
-            label = "PASSWORD",
+            label = stringResource(R.string.password),
             value = if (passwordVisible) credential.password else "\u2022".repeat(credential.password.length.coerceAtMost(16)),
             trailing = {
                 Row {
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
                         Icon(
                             if (passwordVisible) Icons.Filled.VisibilityOff else Icons.Filled.Visibility,
-                            contentDescription = if (passwordVisible) "Hide password" else "Show password"
+                            contentDescription = if (passwordVisible) {
+                                stringResource(R.string.hide_password)
+                            } else {
+                                stringResource(R.string.show_password)
+                            }
                         )
                     }
                     IconButton(onClick = { clipboard.setText(AnnotatedString(credential.password)) }) {
-                        Icon(Icons.Filled.ContentCopy, contentDescription = "Copy password")
+                        Icon(
+                            Icons.Filled.ContentCopy,
+                            contentDescription = stringResource(R.string.copy_password)
+                        )
                     }
                 }
             }
@@ -119,17 +144,27 @@ fun CredentialDetailScreen(
         Spacer(Modifier.height(12.dp))
 
         DetailField(
-            label = "WEBSITE",
+            label = stringResource(R.string.website),
             value = credential.websiteUrl,
             trailing = {
-                IconButton(onClick = { clipboard.setText(AnnotatedString(credential.websiteUrl)) }) {
-                    Icon(Icons.Filled.ContentCopy, contentDescription = "Copy website")
+                IconButton(
+                    onClick = {
+                        clipboard.setText(AnnotatedString(credential.websiteUrl))
+                    }
+                ) {
+                    Icon(
+                        Icons.Filled.ContentCopy,
+                        contentDescription = stringResource(R.string.copy_website)
+                    )
                 }
             }
         )
         Spacer(Modifier.height(12.dp))
 
-        DetailField(label = "NOTES", value = credential.notes.ifBlank { "-" })
+        DetailField(
+            label = stringResource(R.string.notes),
+            value = credential.notes.ifBlank { "-" }
+        )
         Spacer(Modifier.height(24.dp))
 
         OutlinedButton(
@@ -139,23 +174,38 @@ fun CredentialDetailScreen(
         ) {
             Icon(Icons.Filled.Delete, contentDescription = null, tint = KerberosDanger)
             Spacer(Modifier.width(8.dp))
-            Text("Delete Credential")
+            Text(stringResource(R.string.delete_credential))
         }
     }
 
     if (showDeleteConfirm) {
         AlertDialog(
             onDismissRequest = { showDeleteConfirm = false },
-            title = { Text("Delete credential?") },
-            text = { Text("This cannot be undone.") },
+            title = {
+                Text(stringResource(R.string.delete_credential_question))
+            },
+            text = {
+                Text(stringResource(R.string.delete_warning))
+            },
             confirmButton = {
-                TextButton(onClick = {
-                    vaultViewModel.deleteCredential(credential.id) { onBack() }
-                    showDeleteConfirm = false
-                }) { Text("Delete", color = KerberosDanger) }
+                TextButton(
+                    onClick = {
+                        vaultViewModel.deleteCredential(credential.id) { onBack() }
+                        showDeleteConfirm = false
+                    }
+                ) {
+                    Text(
+                        stringResource(R.string.delete),
+                        color = KerberosDanger
+                    )
+                }
             },
             dismissButton = {
-                TextButton(onClick = { showDeleteConfirm = false }) { Text("Cancel") }
+                TextButton(
+                    onClick = { showDeleteConfirm = false }
+                ) {
+                    Text(stringResource(R.string.cancel))
+                }
             }
         )
     }

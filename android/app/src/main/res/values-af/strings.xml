@@ -53,4 +53,18 @@
     <string name="website_example">https://voorbeeld.com</string>
     <string name="notes">NOTAS</string>
     <string name="notes_placeholder">Opsionele notas oor hierdie aanmeldbesonderhede...</string>
+
+    <string name="credential_details">Aanmeldbesonderhede</string>
+    <string name="edit">Wysig</string>
+    <string name="modified_recently">Onlangs gewysig</string>
+    <string name="username">GEBRUIKERSNAAM</string>
+    <string name="website">WEBWERF</string>
+    <string name="copy_username">Kopieer gebruikersnaam</string>
+    <string name="copy_password">Kopieer wagwoord</string>
+    <string name="copy_website">Kopieer webwerf</string>
+    <string name="delete_credential">Verwyder aanmeldbesonderhede</string>
+    <string name="delete_credential_question">Verwyder aanmeldbesonderhede?</string>
+    <string name="delete_warning">Dit kan nie ongedaan gemaak word nie.</string>
+    <string name="delete">Verwyder</string>
+    <string name="cancel">Kanselleer</string>
 </resources>

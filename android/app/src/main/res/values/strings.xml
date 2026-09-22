@@ -54,5 +54,19 @@
     <string name="website_example">https://example.com</string>
     <string name="notes">NOTES</string>
     <string name="notes_placeholder">Optional notes about this credential...</string>
+
+    <string name="credential_details">Credential Details</string>
+    <string name="edit">Edit</string>
+    <string name="modified_recently">Modified recently</string>
+    <string name="username">USERNAME</string>
+    <string name="website">WEBSITE</string>
+    <string name="copy_username">Copy username</string>
+    <string name="copy_password">Copy password</string>
+    <string name="copy_website">Copy website</string>
+    <string name="delete_credential">Delete Credential</string>
+    <string name="delete_credential_question">Delete credential?</string>
+    <string name="delete_warning">This cannot be undone.</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
 </resources>
 
