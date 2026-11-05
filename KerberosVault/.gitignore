@@ -1,7 +1,0 @@
-.idea/
-**/.idea/
-**/.gradle/
-**/build/
-**/local.properties
-**/google-services.json
-**/firebase-service-account.json
