@@ -31,5 +31,10 @@ jobs:
       - name: Give Gradle permission
         run: chmod +x gradlew
 
+      - name: Build Android app
+        run: ./gradlew assembleDebug
+
+
+
       - name: Run unit tests
         run: ./gradlew testDebugUnitTest
