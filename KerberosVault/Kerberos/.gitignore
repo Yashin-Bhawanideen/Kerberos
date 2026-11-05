@@ -1,0 +1,13 @@
+# Android
+android/.gradle/
+android/local.properties
+android/.idea/
+android/app/build/
+android/build/
+android/app/google-services.json
+
+# ASP.NET
+api/Kerberos.Api/bin/
+api/Kerberos.Api/obj/
+api/Kerberos.Api/firebase-service-account.json
+api/Kerberos.Api/appsettings.json
